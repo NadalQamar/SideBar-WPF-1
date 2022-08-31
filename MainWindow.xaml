@@ -1,0 +1,143 @@
+﻿<Window x:Name="SideBar" x:Class="SideBar.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SideBar"
+        mc:Ignorable="d"
+        Title="SideBar" 
+        Height= "1080"
+        Width="550"
+        WindowStartupLocation="Manual"
+        Top="0"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        WindowState="Normal"
+        ShowInTaskbar="False" 
+        HorizontalContentAlignment="Stretch" 
+        ScrollViewer.VerticalScrollBarVisibility="Disabled"
+        Topmost="True" 
+        VerticalContentAlignment="Stretch" 
+        ResizeMode="NoResize" 
+>
+
+    <Grid Margin="0,0,0,0">
+        <Label x:Name="ControlBox"
+               Height="1080"
+               Width="5"
+               Margin="-35,0,0,0"
+               Panel.ZIndex="0"
+               UIElement.MouseEnter="ControlBox_MouseEnter"
+               />
+        <WrapPanel x:Name="PrimarySideBarPanel"
+            Margin="10,980,10,20" 
+            Orientation="Vertical" FlowDirection="RightToLeft"
+            
+            >
+            <Button x:Name="SettingsButton" 
+                Content="S"
+                Width="20"
+                Height="20"
+                Panel.ZIndex="1"
+                Click="SettingsButton_Click" 
+                Margin="0,0,0,10"
+                />
+            <Button x:Name="VisiblityButton" 
+                Content="V" 
+                Width="20"
+                Height="20"
+                Panel.ZIndex="1"
+                Click="VisiblityButton_Click"
+                Margin="0,0,0,10"
+                />
+            <Button x:Name="CloseButton" 
+                Content="X"
+                Width="20"
+                Height="20"
+                Panel.ZIndex="1" 
+                Click="CloseButton_Click"
+                Margin="0,0,0,0"
+                />
+        </WrapPanel>
+        <WrapPanel x:Name="BackgroundColorChangerPanel"
+            HorizontalAlignment="Left" 
+            Margin="40,46,0,0"  
+            VerticalAlignment="Top" Width="108" RenderTransformOrigin="0.5,0.5"
+            Orientation="Horizontal"
+            >
+            <WrapPanel x:Name="BackgroundColorChangerValuePanel" 
+                       HorizontalAlignment="Left" 
+                       Orientation="Vertical" 
+                       VerticalAlignment="Top">
+                <TextBox x:Name="SettingsBCCA" 
+                    HorizontalAlignment="Center" 
+                    TextWrapping="Wrap" 
+                    VerticalAlignment="Center" 
+                    Width="30" 
+                    TextChanged="SettingsBCCA_TextChanged"
+                    Margin="0,4,0,10"
+                     />
+                <TextBox x:Name="SettingsBCCR" 
+                    HorizontalAlignment="Left" 
+                    TextWrapping="Wrap" 
+                    VerticalAlignment="Center" 
+                    Width="30" 
+                    TextChanged ="SettingsBCCR_TextChanged"
+                    Margin="0,0,0,10"
+                    />
+                <TextBox x:Name="SettingsBCCG" 
+                    HorizontalAlignment="Left" 
+                    TextWrapping="Wrap" 
+                    VerticalAlignment="Top" 
+                    Width="30"
+                    TextChanged="SettingsBCCG_TextChanged"
+                    Margin="0,0,0,10"
+                     />
+                <TextBox x:Name="SettingsBCCB" 
+                    HorizontalAlignment="Left" 
+                    TextWrapping="Wrap" 
+                    VerticalAlignment="Top" 
+                    Width="30"
+                    TextChanged="SettingsBCCB_TextChanged"
+                    Margin="0,0,0,0"
+                     />
+            </WrapPanel>
+            <WrapPanel x:Name="BackgroundColorChangerLabelPanel" 
+                       HorizontalAlignment="Left" 
+                       Orientation="Vertical" 
+                       VerticalAlignment="Top">
+                <Label x:Name="SettingsBCCALabel" 
+                    Content="0-255 Alpha" 
+                    HorizontalAlignment="Left" 
+                    Height="27" 
+                    FontSize="12" 
+                    ForceCursor="True" 
+                    VerticalAlignment="Center"
+                   />
+                <Label x:Name="SettingsBCCRLabel" 
+                    Content="0-255 Red" 
+                    HorizontalAlignment="Left" 
+                    Height="27" FontSize="12" 
+                    ForceCursor="True" 
+                    VerticalAlignment="Top"
+                   />
+                <Label x:Name="SettingsBCCGLabel" 
+                    Content="0-255 Green" 
+                    HorizontalAlignment="Center" 
+                    Height="27" 
+                    FontSize="12" 
+                    ForceCursor="True" 
+                    VerticalAlignment="Center"
+                   />
+                <Label x:Name="SettingsBCCBLabel" 
+                    Content="0-255 Blue" 
+                    HorizontalAlignment="Left" 
+                    Height="27" FontSize="12" 
+                    ForceCursor="True" 
+                    VerticalAlignment="Top"
+                   />
+            </WrapPanel>
+        </WrapPanel>
+    </Grid>
+
+</Window>
