@@ -20,12 +20,16 @@ namespace SideBar
     /// </summary>
     public partial class MainWindow : Window
     {
-        bool accessFlag = false;
-        bool settingsFlag = false;
-        string barColorA;
-        string barColorR;
-        string barColorG;
-        string barColorB;
+        //field values
+        bool accessFlag = false;//For Mouse Entry to and from SideBar
+        bool settingsFlag = false;//For When user clicks on setting button
+        byte bgColorA;//Color of the Background
+        byte bgColorR;
+        byte bgColorG;
+        byte bgColorB;
+        Color bgColorHex;
+        
+        //Load on Startup
         public MainWindow()
         {
             InitializeComponent();
@@ -37,38 +41,18 @@ namespace SideBar
             BackgroundColorChangerPanel.IsEnabled = false;
             BackgroundColorChangerPanel.Visibility = Visibility.Hidden;
 
-            Brush background = Background;
-            string bg = new BrushConverter().ConvertToString(background);
-            
-            for(int i = 0; i < bg.Length; i++)
-            {
-                if(i == 0)
-                {
-                    //do nothing
-                }
-                else if (i == 1 || i == 2)
-                {
-                    barColorA += bg[i];
-                }
-                else if (i == 3 || i == 4)
-                {
-                    barColorR += bg[i];
-                }
-                else if (i == 5 || i == 6)
-                {
-                    barColorG += bg[i];
-                }
-                else
-                {
-                    barColorB += bg[i];
-                }
+            string colorbg = new BrushConverter().ConvertToString(Background);
+            Color bg = (Color) ColorConverter.ConvertFromString(colorbg);
 
-            }
-
-            
+            bgColorHex = bg;
+            bgColorA = bg.A;
+            bgColorR = bg.R;
+            bgColorG = bg.G;
+            bgColorB = bg.B;
         }
-
-        private void ControlBox_MouseEnter(object sender, MouseEventArgs e)
+        
+        //SideBar Controls
+        private void ControlBox_MouseEnter(object sender, MouseEventArgs e)//EventHandler for whe the user mouse hover enters/leaves the Sidebar
         {
             if(accessFlag == true && settingsFlag == true)
             {
@@ -91,14 +75,14 @@ namespace SideBar
                 accessFlag = false;
             }
         }
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+ 
+        private void CloseButton_Click(object sender, RoutedEventArgs e)//Closes the application
         {
             this.Close();
             
         }
 
-        private void VisiblityButton_Click(object sender, RoutedEventArgs e)
+        private void VisiblityButton_Click(object sender, RoutedEventArgs e)//Makes the SideBar stick around or auto hide again
         {   
             if(accessFlag == true && settingsFlag == true && ControlBox.IsEnabled == true)
             {
@@ -118,7 +102,7 @@ namespace SideBar
             }
         }
 
-        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)//Opens the Settings Panel
         {
             if(settingsFlag == false)
             {
@@ -129,10 +113,11 @@ namespace SideBar
                 BackgroundColorChangerPanel.IsEnabled = true;
                 settingsFlag = true;
 
-                SettingsBCCA.Text = barColorA;
-                SettingsBCCR.Text = barColorR;
-                SettingsBCCG.Text = barColorG;
-                SettingsBCCB.Text = barColorB;
+                SetBCCHexVal.Text = bgColorHex.ToString();
+                SetBCCAVal.Text = bgColorA.ToString();
+                SetBCCRVal.Text = bgColorR.ToString();
+                SetBCCGVal.Text = bgColorG.ToString();
+                SetBCCBVal.Text = bgColorB.ToString();
             }
             else
             {
@@ -146,174 +131,107 @@ namespace SideBar
 
         }
 
-        private void SettingsBCCA_TextChanged(object sender, TextChangedEventArgs e)
+        //Settings Panel Controls
+        private void SetBCCAVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Alpha/Opacity SetBCC
         {
-            if(SettingsBCCA.Text == null)
+            if(Byte.TryParse(SetBCCAVal.Text, out bgColorA))
             {
-                //do nothing
-            }
-            else if(SettingsBCCA.Text.Length == 0)
-            {
-                //do noting
-            }
-            else if(SettingsBCCA.Text.Length == 1)
-            {
-                //do nothing
-            }
-            else if(SettingsBCCA.Text.Length > 2)
-            {
-                //do nothing
-            }
-            else
-            {
-                barColorA = SettingsBCCA.Text;
-                barColorR = SettingsBCCR.Text;
-                barColorG = SettingsBCCG.Text;
-                barColorB = SettingsBCCB.Text;
-
-                string barBackground = "#";
-                barBackground += barColorA;
-                barBackground += barColorR;
-                barBackground += barColorG;
-                barBackground += barColorB;
-
-                Brush brush = null;
-                BrushConverter m = new BrushConverter();
-                if (m.CanConvertFrom(typeof(string)))
+                if(bgColorA > 255)
                 {
-                    brush = (Brush)m.ConvertFromString(barBackground);
+                    //do nothing
                 }
-                Background = brush;
-
+                else
+                {
+                    Color bg = Color.FromArgb(bgColorA, bgColorR, bgColorG, bgColorB);
+                    string colorbg = new ColorConverter().ConvertToString(bg);
+                    Background = (Brush)new BrushConverter().ConvertFromString(colorbg);
+                }
+            }else
+            {
+                bgColorA = 0;
+                Color bg = Color.FromArgb(bgColorA, bgColorR, bgColorG, bgColorB);
+                string colorbg = new ColorConverter().ConvertToString(bg);
+                Background = (Brush)new BrushConverter().ConvertFromString(colorbg);
             }
 
         }
-        private void SettingsBCCR_TextChanged(object sender, TextChangedEventArgs e)
+        private void SetBCCRVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Red SetBCC
         {
-            if (SettingsBCCR.Text == null)
+            if (Byte.TryParse(SetBCCRVal.Text, out bgColorR))
             {
-                //do nothing
-            }
-            else if (SettingsBCCR.Text.Length == 0)
-            {
-                //do noting
-            }
-            else if (SettingsBCCR.Text.Length == 1)
-            {
-                //do nothing
-            }
-            else if (SettingsBCCR.Text.Length > 2)
-            {
-                //do nothing
+                if (bgColorR > 255)
+                {
+                    //do nothing
+                }
+                else
+                {
+                    Color bg = Color.FromArgb(bgColorA, bgColorR, bgColorG, bgColorB);
+                    string colorbg = new ColorConverter().ConvertToString(bg);
+                    Background = (Brush)new BrushConverter().ConvertFromString(colorbg);
+                }
             }
             else
             {
-                barColorA = SettingsBCCA.Text;
-                barColorR = SettingsBCCR.Text;
-                barColorG = SettingsBCCG.Text;
-                barColorB = SettingsBCCB.Text;
-
-                string barBackground = "#";
-                barBackground += barColorA;
-                barBackground += barColorR;
-                barBackground += barColorG;
-                barBackground += barColorB;
-
-                Brush brush = null;
-                BrushConverter m = new BrushConverter();
-                if (m.CanConvertFrom(typeof(string)))
-                {
-                    brush = (Brush)m.ConvertFromString(barBackground);
-                }
-                Background = brush;
-
-
+                bgColorR = 0;
+                Color bg = Color.FromArgb(bgColorA, bgColorR, bgColorG, bgColorB);
+                string colorbg = new ColorConverter().ConvertToString(bg);
+                Background = (Brush)new BrushConverter().ConvertFromString(colorbg);
             }
 
         }
-        private void SettingsBCCG_TextChanged(object sender, TextChangedEventArgs e)
+        private void SetBCCGVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Green SetBCC
         {
-            if (SettingsBCCG.Text == null)
+            if (Byte.TryParse(SetBCCGVal.Text, out bgColorG))
             {
-                //do nothing
-            }
-            else if (SettingsBCCG.Text.Length == 0)
-            {
-                //do noting
-            }
-            else if (SettingsBCCG.Text.Length == 1)
-            {
-                //do nothing
-            }
-            else if (SettingsBCCG.Text.Length > 2)
-            {
-                //do nothing
+                if (bgColorG > 255)
+                {
+                    //do nothing
+                }
+                else
+                {
+                    Color bg = Color.FromArgb(bgColorA, bgColorR, bgColorG, bgColorB);
+                    string colorbg = new ColorConverter().ConvertToString(bg);
+                    Background = (Brush)new BrushConverter().ConvertFromString(colorbg);
+                }
             }
             else
             {
-                barColorA = SettingsBCCA.Text;
-                barColorR = SettingsBCCR.Text;
-                barColorG = SettingsBCCG.Text;
-                barColorB = SettingsBCCB.Text;
-
-                string barBackground = "#";
-                barBackground += barColorA;
-                barBackground += barColorR;
-                barBackground += barColorG;
-                barBackground += barColorB;
-
-                Brush brush = null;
-                BrushConverter m = new BrushConverter();
-                if (m.CanConvertFrom(typeof(string)))
-                {
-                    brush = (Brush)m.ConvertFromString(barBackground);
-                }
-                Background = brush;
-
-
+                bgColorG = 0;
+                Color bg = Color.FromArgb(bgColorA, bgColorR, bgColorG, bgColorB);
+                string colorbg = new ColorConverter().ConvertToString(bg);
+                Background = (Brush)new BrushConverter().ConvertFromString(colorbg);
             }
         }
-        private void SettingsBCCB_TextChanged(object sender, TextChangedEventArgs e)
+        private void SetBCCBVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Blue SetBCC
         {
-            if (SettingsBCCB.Text == null)
+            if (Byte.TryParse(SetBCCBVal.Text, out bgColorB))
             {
-                //do nothing
-            }
-            else if (SettingsBCCB.Text.Length == 0)
-            {
-                //do noting
-            }
-            else if (SettingsBCCB.Text.Length == 1)
-            {
-                //do nothing
-            }
-            else if (SettingsBCCB.Text.Length > 2)
-            {
-                //do nothing
+                if (bgColorB > 255)
+                {
+                    //do nothing
+                }
+                else
+                {
+                    Color bg = Color.FromArgb(bgColorA, bgColorR, bgColorG, bgColorB);
+                    string colorbg = new ColorConverter().ConvertToString(bg);
+                    Background = (Brush)new BrushConverter().ConvertFromString(colorbg);
+                }
             }
             else
             {
-                barColorA = SettingsBCCA.Text;
-                barColorR = SettingsBCCR.Text;
-                barColorG = SettingsBCCG.Text;
-                barColorB = SettingsBCCB.Text;
-
-                string barBackground = "#";
-                barBackground += barColorA;
-                barBackground += barColorR;
-                barBackground += barColorG;
-                barBackground += barColorB;
-
-                Brush brush = null;
-                BrushConverter m = new BrushConverter();
-                if (m.CanConvertFrom(typeof(string)))
-                {
-                    brush = (Brush)m.ConvertFromString(barBackground);
-                }
-                Background = brush;
-
-
+                bgColorB = 0;
+                Color bg = Color.FromArgb(bgColorA, bgColorR, bgColorG, bgColorB);
+                string colorbg = new ColorConverter().ConvertToString(bg);
+                Background = (Brush)new BrushConverter().ConvertFromString(colorbg);
             }
+        }
+
+        private void SetBCCHexVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Hex SetBCC
+        {//Improvement needed//run against a list that will look for specific characters to remove from input
+            string color = new ColorConverter().ConvertToString(bgColorHex);
+            Background = (Brush)new BrushConverter().ConvertFromString(color);
+
+            //additonal code for change accross the board
         }
     }
 }

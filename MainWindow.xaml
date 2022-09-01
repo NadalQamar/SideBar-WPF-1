@@ -18,9 +18,8 @@
         ScrollViewer.VerticalScrollBarVisibility="Disabled"
         Topmost="True" 
         VerticalContentAlignment="Stretch" 
-        ResizeMode="NoResize" 
->
-
+        ResizeMode="NoResize"
+        >
     <Grid Margin="0,0,0,0">
         <Label x:Name="ControlBox"
                Height="1080"
@@ -29,115 +28,153 @@
                Panel.ZIndex="0"
                UIElement.MouseEnter="ControlBox_MouseEnter"
                />
-        <WrapPanel x:Name="PrimarySideBarPanel"
-            Margin="10,980,10,20" 
-            Orientation="Vertical" FlowDirection="RightToLeft"
-            
-            >
+        <WrapPanel x:Name="PrimarySideBarPanel" 
+                   Margin="10,980,10,20" 
+                   Orientation="Vertical" 
+                   FlowDirection="RightToLeft"
+                   >
             <Button x:Name="SettingsButton" 
-                Content="S"
-                Width="20"
-                Height="20"
-                Panel.ZIndex="1"
-                Click="SettingsButton_Click" 
-                Margin="0,0,0,10"
-                />
-            <Button x:Name="VisiblityButton" 
-                Content="V" 
-                Width="20"
-                Height="20"
-                Panel.ZIndex="1"
-                Click="VisiblityButton_Click"
-                Margin="0,0,0,10"
-                />
-            <Button x:Name="CloseButton" 
-                Content="X"
-                Width="20"
-                Height="20"
-                Panel.ZIndex="1" 
-                Click="CloseButton_Click"
-                Margin="0,0,0,0"
-                />
-        </WrapPanel>
-        <WrapPanel x:Name="BackgroundColorChangerPanel"
-            HorizontalAlignment="Left" 
-            Margin="40,46,0,0"  
-            VerticalAlignment="Top" Width="108" RenderTransformOrigin="0.5,0.5"
-            Orientation="Horizontal"
-            >
-            <WrapPanel x:Name="BackgroundColorChangerValuePanel" 
-                       HorizontalAlignment="Left" 
-                       Orientation="Vertical" 
-                       VerticalAlignment="Top">
-                <TextBox x:Name="SettingsBCCA" 
-                    HorizontalAlignment="Center" 
-                    TextWrapping="Wrap" 
-                    VerticalAlignment="Center" 
-                    Width="30" 
-                    TextChanged="SettingsBCCA_TextChanged"
-                    Margin="0,4,0,10"
-                     />
-                <TextBox x:Name="SettingsBCCR" 
-                    HorizontalAlignment="Left" 
-                    TextWrapping="Wrap" 
-                    VerticalAlignment="Center" 
-                    Width="30" 
-                    TextChanged ="SettingsBCCR_TextChanged"
+                    Content="S"
+                    Width="20"
+                    Height="20"
+                    Panel.ZIndex="1"
+                    Click="SettingsButton_Click" 
                     Margin="0,0,0,10"
                     />
-                <TextBox x:Name="SettingsBCCG" 
-                    HorizontalAlignment="Left" 
-                    TextWrapping="Wrap" 
-                    VerticalAlignment="Top" 
-                    Width="30"
-                    TextChanged="SettingsBCCG_TextChanged"
+            <Button x:Name="VisiblityButton" 
+                    Content="V" 
+                    Width="20"
+                    Height="20"
+                    Panel.ZIndex="1"
+                    Click="VisiblityButton_Click"
                     Margin="0,0,0,10"
-                     />
-                <TextBox x:Name="SettingsBCCB" 
-                    HorizontalAlignment="Left" 
-                    TextWrapping="Wrap" 
-                    VerticalAlignment="Top" 
-                    Width="30"
-                    TextChanged="SettingsBCCB_TextChanged"
+                    />
+            <Button x:Name="CloseButton" 
+                    Content="X"
+                    Width="20"
+                    Height="20"
+                    Panel.ZIndex="1" 
+                    Click="CloseButton_Click"
                     Margin="0,0,0,0"
-                     />
-            </WrapPanel>
-            <WrapPanel x:Name="BackgroundColorChangerLabelPanel" 
+                    />
+        </WrapPanel>
+        <WrapPanel x:Name="BackgroundColorChangerPanel" 
+                   HorizontalAlignment="Left" 
+                   Margin="40,46,0,0"  
+                   VerticalAlignment="Top" 
+                   RenderTransformOrigin="0.5,0.5"
+                   Orientation="Vertical"
+                   >
+            <WrapPanel x:Name="BackgroundColorSubChangerPanel1"
                        HorizontalAlignment="Left" 
-                       Orientation="Vertical" 
-                       VerticalAlignment="Top">
-                <Label x:Name="SettingsBCCALabel" 
-                    Content="0-255 Alpha" 
-                    HorizontalAlignment="Left" 
-                    Height="27" 
-                    FontSize="12" 
-                    ForceCursor="True" 
-                    VerticalAlignment="Center"
-                   />
-                <Label x:Name="SettingsBCCRLabel" 
-                    Content="0-255 Red" 
-                    HorizontalAlignment="Left" 
-                    Height="27" FontSize="12" 
-                    ForceCursor="True" 
-                    VerticalAlignment="Top"
-                   />
-                <Label x:Name="SettingsBCCGLabel" 
-                    Content="0-255 Green" 
-                    HorizontalAlignment="Center" 
-                    Height="27" 
-                    FontSize="12" 
-                    ForceCursor="True" 
-                    VerticalAlignment="Center"
-                   />
-                <Label x:Name="SettingsBCCBLabel" 
-                    Content="0-255 Blue" 
-                    HorizontalAlignment="Left" 
-                    Height="27" FontSize="12" 
-                    ForceCursor="True" 
-                    VerticalAlignment="Top"
-                   />
+                       Margin="0,0,0,0"  
+                       VerticalAlignment="Top" 
+                       RenderTransformOrigin="0.5,0.5"
+                       Orientation="Horizontal"
+                       >
+                <WrapPanel x:Name="BackgroundColorChangerValPanel" 
+                           HorizontalAlignment="Left" 
+                           Orientation="Vertical" 
+                           VerticalAlignment="Top"
+                           >
+                    <TextBox x:Name="SetBCCAVal" 
+                             HorizontalAlignment="Center" 
+                             TextWrapping="Wrap" 
+                             VerticalAlignment="Center" 
+                             Width="30" 
+                             TextChanged="SetBCCAVal_TextChanged"
+                             Margin="0,4,0,10"
+                             MaxLength="3"
+                              />
+                    <TextBox x:Name="SetBCCRVal" 
+                             HorizontalAlignment="Left" 
+                             TextWrapping="Wrap" 
+                             VerticalAlignment="Center" 
+                             Width="30" 
+                             TextChanged ="SetBCCRVal_TextChanged"
+                             Margin="0,0,0,10"
+                             MaxLength="3"
+                             />
+                    <TextBox x:Name="SetBCCGVal" 
+                             HorizontalAlignment="Left" 
+                             TextWrapping="Wrap" 
+                             VerticalAlignment="Top" 
+                             Width="30"
+                             TextChanged="SetBCCGVal_TextChanged"
+                             Margin="0,0,0,10"
+                             MaxLength="3"
+                             />
+                    <TextBox x:Name="SetBCCBVal" 
+                             HorizontalAlignment="Left" 
+                             TextWrapping="Wrap" 
+                             VerticalAlignment="Top" 
+                             Width="30"
+                             TextChanged="SetBCCBVal_TextChanged"
+                             Margin="0,0,0,0" 
+                             MaxLength="3"
+                             />
+                </WrapPanel>
+                <WrapPanel x:Name="BackgroundColorChangerLabelPanel" 
+                           HorizontalAlignment="Left" 
+                           Orientation="Vertical" 
+                           VerticalAlignment="Top"
+                           >
+                    <Label x:Name="SetBCCALabel" 
+                           Content="0-255 Alpha" 
+                           HorizontalAlignment="Left" 
+                           Height="25" 
+                           FontSize="12" 
+                           ForceCursor="True" 
+                           VerticalAlignment="Center" 
+                           Margin="0,1,0,0"
+                           />
+                    <Label x:Name="SetBCCRLabel" 
+                           Content="0-255 Red" 
+                           HorizontalAlignment="Left" 
+                           Height="25" FontSize="12" 
+                           ForceCursor="True" 
+                           VerticalAlignment="Top" 
+                           Margin="0,3,0,0"
+                           />
+                    <Label x:Name="SetBCCGLabel" 
+                           Content="0-255 Green" 
+                           HorizontalAlignment="Center" 
+                           Height="25" 
+                           FontSize="12" 
+                           ForceCursor="True" 
+                           VerticalAlignment="Center" 
+                           Margin="0,3,0,0"
+                           />
+                    <Label x:Name="SetBCCBLabel" 
+                           Content="0-255 Blue" 
+                           HorizontalAlignment="Left" 
+                           Height="25" FontSize="12" 
+                           ForceCursor="True" 
+                           VerticalAlignment="Top" 
+                           Margin="0,3,0,0"
+                           />
+                </WrapPanel>
+            </WrapPanel>
+            <WrapPanel x:Name="BackgroundColorSubChangerPanel2"
+                       HorizontalAlignment="Left" 
+                       Margin="0,10,0,0"  
+                       VerticalAlignment="Top" 
+                       RenderTransformOrigin="0.5,0.5"
+                       Orientation="Vertical"
+                       >
+                <TextBox x:Name="SetBCCHexVal" 
+                         TextWrapping="Wrap" 
+                         Width="76" 
+                         HorizontalAlignment="Left"
+                         MaxLength="9"
+                         TextChanged="SetBCCHexVal_TextChanged"
+                         />
+                <Label x:Name="SetBCCHexLabel" 
+                       Content="Enter HexColor #AARRGGBB"
+                       Margin="0,0,0,0" HorizontalAlignment="Left" Padding="0,5,0,0"
+                       />
+
             </WrapPanel>
         </WrapPanel>
     </Grid>
-
 </Window>
