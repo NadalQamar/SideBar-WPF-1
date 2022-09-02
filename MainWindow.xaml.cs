@@ -28,6 +28,16 @@ namespace SideBar
         byte bgColorG;
         byte bgColorB;
         string bgColorHex;
+        byte tColorA;//Color of the Text Color (ForegroundGet/Set)
+        byte tColorR;
+        byte tColorG;
+        byte tColorB;
+        string tColorHex;
+        byte cColorA;//Color of the Control color (BackgroundTextBoxGet/Set)
+        byte cColorR;
+        byte cColorG;
+        byte cColorB;
+        string cColorHex;
         
         //Load on Startup
         public MainWindow()
@@ -41,6 +51,7 @@ namespace SideBar
             BackgroundColorChangerPanel.IsEnabled = false;
             BackgroundColorChangerPanel.Visibility = Visibility.Hidden;
 
+            //Background Color Get
             string colorbg = new BrushConverter().ConvertToString(Background);
             Color bg = (Color) ColorConverter.ConvertFromString(colorbg);
 
@@ -49,6 +60,251 @@ namespace SideBar
             bgColorR = bg.R;
             bgColorG = bg.G;
             bgColorB = bg.B;
+
+            //Text Color Get
+            string colort = new BrushConverter().ConvertToString(ForegroundGet());
+            Color t = (Color)ColorConverter.ConvertFromString(colort);
+
+            tColorHex = colort;
+            tColorA = t.A;
+            tColorR = t.R;
+            tColorG = t.G;
+            tColorB = t.B;
+
+            //Control Color Get
+            string colorc = new BrushConverter().ConvertToString(BackgroundTextBoxGet());
+            Color c = (Color)ColorConverter.ConvertFromString(colorc);
+
+            cColorHex = colorc;
+            cColorA = c.A;
+            cColorR = c.R;
+            cColorG = c.G;
+            cColorB = c.B;
+
+        }
+        
+        //Methods
+        private Brush ForegroundGet()
+        {
+            Brush brush;
+
+            //PrimarySideBarPanel
+            brush = CloseButton.Foreground;
+            brush = VisiblityButton.Foreground;
+            brush = SettingsButton.Foreground;
+
+            //Background Text
+            brush = SetBCCLabel.Foreground;
+            brush = SetBCCARGBALabel.Foreground;
+            brush = SetBCCARGBRLabel.Foreground;
+            brush = SetBCCARGBGLabel.Foreground;
+            brush = SetBCCARGBBLabel.Foreground;
+            brush = SetBCCHexValLabel.Foreground;
+            brush = SetBCCHexLabel.Foreground;
+
+            //Text Text
+            brush = SetTCCLabel.Foreground;   
+            brush = SetTCCARGBALabel.Foreground;
+            brush = SetTCCARGBRLabel.Foreground;
+            brush = SetTCCARGBGLabel.Foreground;
+            brush = SetTCCARGBBLabel.Foreground;
+            brush = SetTCCHexValLabel.Foreground;
+            brush = SetTCCHexLabel.Foreground;
+
+            //Control Text
+            brush = SetCCCLabel.Foreground;
+            brush = SetCCCARGBALabel.Foreground;
+            brush = SetCCCARGBRLabel.Foreground;
+            brush = SetCCCARGBGLabel.Foreground;
+            brush = SetCCCARGBBLabel.Foreground;
+            brush = SetCCCHexValLabel.Foreground;
+            brush = SetCCCHexLabel.Foreground;
+
+            return brush;
+        }
+
+        private Brush ForegroundTextBoxGet()
+        {
+            Brush brush;
+
+            //Background Text
+            brush = SetBCCARGBAVal.Foreground;
+            brush = SetBCCARGBRVal.Foreground;
+            brush = SetBCCARGBGVal.Foreground;
+            brush = SetBCCARGBBVal.Foreground;
+            brush = SetBCCHexVal.Foreground;
+
+            //Text Text
+            brush = SetTCCARGBAVal.Foreground;
+            brush = SetTCCARGBRVal.Foreground;
+            brush = SetTCCARGBGVal.Foreground;
+            brush = SetTCCARGBBVal.Foreground;
+            brush = SetTCCHexVal.Foreground;
+
+            //Control Text
+            brush = SetCCCARGBAVal.Foreground;
+            brush = SetCCCARGBRVal.Foreground;
+            brush = SetCCCARGBGVal.Foreground;
+            brush = SetCCCARGBBVal.Foreground;
+            brush = SetCCCHexVal.Foreground;
+
+            return brush;
+        }
+
+        private Brush BackgroundGet()
+        {
+            Brush brush;
+
+            //PrimarySideBarPanel
+            brush = CloseButton.Background;
+            brush = VisiblityButton.Background;
+            brush = SettingsButton.Background;
+
+            return brush;
+        }
+
+        private Brush BackgroundTextBoxGet()
+        {
+            Brush brush;
+
+            //Background Control
+            brush = SetBCCARGBAVal.Background;
+            brush = SetBCCARGBRVal.Background;
+            brush = SetBCCARGBGVal.Background;
+            brush = SetBCCARGBBVal.Background;
+            brush = SetBCCHexVal.Background;
+
+            //Text Control
+            brush = SetTCCARGBAVal.Background;
+            brush = SetTCCARGBRVal.Background;
+            brush = SetTCCARGBGVal.Background;
+            brush = SetTCCARGBBVal.Background;
+            brush = SetTCCHexVal.Background;
+
+            //Control Control
+            brush = SetCCCARGBAVal.Background;
+            brush = SetCCCARGBRVal.Background;
+            brush = SetCCCARGBGVal.Background;
+            brush = SetCCCARGBBVal.Background;
+            brush = SetCCCHexVal.Background;
+
+            return brush;
+        }
+
+        private void ForegroundSet(Brush brush)
+        {
+            //PrimarySideBarPanel
+            CloseButton.Foreground = brush;
+            VisiblityButton.Foreground = brush;
+            SettingsButton.Foreground = brush;
+
+            //Background Text
+            SetBCCLabel.Foreground = brush;
+            SetBCCARGBALabel.Foreground = brush;
+            SetBCCARGBRLabel.Foreground = brush;
+            SetBCCARGBGLabel.Foreground = brush;
+            SetBCCARGBBLabel.Foreground = brush;
+            SetBCCHexValLabel.Foreground = brush;
+            SetBCCHexLabel.Foreground = brush;
+
+            //Text Text
+            SetTCCLabel.Foreground = brush;
+            SetTCCARGBALabel.Foreground = brush;
+            SetTCCARGBRLabel.Foreground = brush;
+            SetTCCARGBGLabel.Foreground = brush;
+            SetTCCARGBBLabel.Foreground = brush;
+            SetTCCHexValLabel.Foreground = brush;
+            SetTCCHexLabel.Foreground = brush;
+
+            //Control Text
+            SetCCCLabel.Foreground = brush;
+            SetCCCARGBALabel.Foreground = brush;
+            SetCCCARGBRLabel.Foreground = brush;
+            SetCCCARGBGLabel.Foreground = brush;
+            SetCCCARGBBLabel.Foreground = brush;
+            SetCCCHexValLabel.Foreground = brush;
+            SetCCCHexLabel.Foreground = brush;
+        }
+
+        private void ForegroundTextBoxSet(Brush brush)
+        {
+            //Background Text
+            SetBCCARGBAVal.Foreground = brush;
+            SetBCCARGBRVal.Foreground = brush;
+            SetBCCARGBGVal.Foreground = brush;
+            SetBCCARGBBVal.Foreground = brush;
+            SetBCCHexVal.Foreground = brush;
+
+            //Text Text
+            SetTCCARGBAVal.Foreground = brush;
+            SetTCCARGBRVal.Foreground = brush;
+            SetTCCARGBGVal.Foreground = brush;
+            SetTCCARGBBVal.Foreground = brush;
+            SetTCCHexVal.Foreground = brush;
+
+            //Control Text
+            SetCCCARGBAVal.Foreground = brush;
+            SetCCCARGBRVal.Foreground = brush;
+            SetCCCARGBGVal.Foreground = brush;
+            SetCCCARGBBVal.Foreground = brush;
+            SetCCCHexVal.Foreground = brush;
+        }
+
+        private void BackgroundSet(Brush brush)
+        {
+            //PrimarySideBarPanel
+            CloseButton.Background = brush;
+            VisiblityButton.Background = brush;
+            SettingsButton.Background = brush;
+        }
+
+        private void BackgroundTextBoxSet(Brush brush)
+        {
+
+            //Background Control
+            SetBCCARGBAVal.Background = brush;
+            SetBCCARGBRVal.Background = brush;
+            SetBCCARGBGVal.Background = brush;
+            SetBCCARGBBVal.Background = brush;
+            SetBCCHexVal.Background = brush;
+
+            //Text Control
+            SetTCCARGBAVal.Background = brush;
+            SetTCCARGBRVal.Background = brush;
+            SetTCCARGBGVal.Background = brush;
+            SetTCCARGBBVal.Background = brush;
+            SetTCCHexVal.Background = brush;
+
+            //Control Control
+            SetCCCARGBAVal.Background = brush;
+            SetCCCARGBRVal.Background = brush;
+            SetCCCARGBGVal.Background = brush;
+            SetCCCARGBBVal.Background = brush;
+            SetCCCHexVal.Background = brush;
+        }
+
+        private Brush ConversionToBrushFromARGB(byte A, byte R, byte G, byte B)
+        {
+            Color brush = Color.FromArgb(A, R, G, B);
+            string colorBrush = new ColorConverter().ConvertToString(brush);
+            return (Brush)new BrushConverter().ConvertFromString(colorBrush);
+        }
+
+        private string ConversionFromBrushHex(Brush brush)
+        {
+            return new BrushConverter().ConvertToString(brush);
+        }
+
+        private Brush ConversionToBrushHex(string str)
+        {
+            return (Brush)new BrushConverter().ConvertFromString(str);
+        }
+
+        private Color ConversionToColorFromBrush(Brush brush)
+        {
+            string color = new BrushConverter().ConvertToString(brush);
+            return (Color)ColorConverter.ConvertFromString(color);
+
         }
         
         //SideBar Controls
@@ -113,11 +369,26 @@ namespace SideBar
                 BackgroundColorChangerPanel.IsEnabled = true;
                 settingsFlag = true;
 
+                //Background Color Display
                 SetBCCHexVal.Text = bgColorHex;
                 SetBCCARGBAVal.Text = bgColorA.ToString();
                 SetBCCARGBRVal.Text = bgColorR.ToString();
                 SetBCCARGBGVal.Text = bgColorG.ToString();
                 SetBCCARGBBVal.Text = bgColorB.ToString();
+
+                //Text Color Display
+                SetTCCHexVal.Text = tColorHex;
+                SetTCCARGBAVal.Text = tColorA.ToString();
+                SetTCCARGBRVal.Text = tColorR.ToString();
+                SetTCCARGBGVal.Text = tColorG.ToString();
+                SetTCCARGBBVal.Text = tColorB.ToString();
+
+                //Control Color Display
+                SetCCCHexVal.Text = cColorHex;
+                SetCCCARGBAVal.Text = cColorA.ToString();
+                SetCCCARGBRVal.Text = cColorR.ToString();
+                SetCCCARGBGVal.Text = cColorG.ToString();
+                SetCCCARGBBVal.Text = cColorB.ToString();
             }
             else
             {
@@ -132,6 +403,8 @@ namespace SideBar
         }
 
         //Settings Panel Controls
+
+        //Background Color Changer Controls
         private void SetBCCARGBAVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Alpha/Opacity SetBCC
         {
             if(Byte.TryParse(SetBCCARGBAVal.Text, out bgColorA))
@@ -141,25 +414,21 @@ namespace SideBar
                     //do nothing
                 }
                 else
-                {
-                    Color bg = Color.FromArgb(bgColorA, bgColorR, bgColorG, bgColorB);
-                    string colorbg = new ColorConverter().ConvertToString(bg);
-                    Background = (Brush)new BrushConverter().ConvertFromString(colorbg);
+                {                   
+                    Background = ConversionToBrushFromARGB(bgColorA,bgColorR,bgColorG,bgColorB);
 
                     //Code to Syncronize Hex
-                    bgColorHex = new BrushConverter().ConvertToString(Background);
+                    bgColorHex = ConversionFromBrushHex(Background);
                     SetBCCHexVal.Text = bgColorHex;
 
                 }
             }else
             {
                 bgColorA = 0;
-                Color bg = Color.FromArgb(bgColorA, bgColorR, bgColorG, bgColorB);
-                string colorbg = new ColorConverter().ConvertToString(bg);
-                Background = (Brush)new BrushConverter().ConvertFromString(colorbg);
+                Background = ConversionToBrushFromARGB(bgColorA, bgColorR, bgColorG, bgColorB);
 
-                //Code to Syncronize Hex
-                bgColorHex = new BrushConverter().ConvertToString(Background);
+                //Code to Syncronize Hex 
+                bgColorHex = ConversionFromBrushHex(Background);
                 SetBCCHexVal.Text = bgColorHex;
             }
 
@@ -174,24 +443,21 @@ namespace SideBar
                 }
                 else
                 {
-                    Color bg = Color.FromArgb(bgColorA, bgColorR, bgColorG, bgColorB);
-                    string colorbg = new ColorConverter().ConvertToString(bg);
-                    Background = (Brush)new BrushConverter().ConvertFromString(colorbg);
+                    Background = ConversionToBrushFromARGB(bgColorA, bgColorR, bgColorG, bgColorB);
 
                     //Code to Syncronize Hex
-                    bgColorHex = new BrushConverter().ConvertToString(Background);
+                    bgColorHex = ConversionFromBrushHex(Background);
                     SetBCCHexVal.Text = bgColorHex;
+
                 }
             }
             else
             {
                 bgColorR = 0;
-                Color bg = Color.FromArgb(bgColorA, bgColorR, bgColorG, bgColorB);
-                string colorbg = new ColorConverter().ConvertToString(bg);
-                Background = (Brush)new BrushConverter().ConvertFromString(colorbg);
+                Background = ConversionToBrushFromARGB(bgColorA, bgColorR, bgColorG, bgColorB);
 
                 //Code to Syncronize Hex
-                bgColorHex = new BrushConverter().ConvertToString(Background);
+                bgColorHex = ConversionFromBrushHex(Background);
                 SetBCCHexVal.Text = bgColorHex;
             }
 
@@ -206,24 +472,21 @@ namespace SideBar
                 }
                 else
                 {
-                    Color bg = Color.FromArgb(bgColorA, bgColorR, bgColorG, bgColorB);
-                    string colorbg = new ColorConverter().ConvertToString(bg);
-                    Background = (Brush)new BrushConverter().ConvertFromString(colorbg);
+                    Background = ConversionToBrushFromARGB(bgColorA, bgColorR, bgColorG, bgColorB);
 
                     //Code to Syncronize Hex
-                    bgColorHex = new BrushConverter().ConvertToString(Background);
+                    bgColorHex = ConversionFromBrushHex(Background);
                     SetBCCHexVal.Text = bgColorHex;
+
                 }
             }
             else
             {
                 bgColorG = 0;
-                Color bg = Color.FromArgb(bgColorA, bgColorR, bgColorG, bgColorB);
-                string colorbg = new ColorConverter().ConvertToString(bg);
-                Background = (Brush)new BrushConverter().ConvertFromString(colorbg);
+                Background = ConversionToBrushFromARGB(bgColorA, bgColorR, bgColorG, bgColorB);
 
                 //Code to Syncronize Hex
-                bgColorHex = new BrushConverter().ConvertToString(Background);
+                bgColorHex = ConversionFromBrushHex(Background);
                 SetBCCHexVal.Text = bgColorHex;
             }
         }
@@ -237,24 +500,21 @@ namespace SideBar
                 }
                 else
                 {
-                    Color bg = Color.FromArgb(bgColorA, bgColorR, bgColorG, bgColorB);
-                    string colorbg = new ColorConverter().ConvertToString(bg);
-                    Background = (Brush)new BrushConverter().ConvertFromString(colorbg);
+                    Background = ConversionToBrushFromARGB(bgColorA, bgColorR, bgColorG, bgColorB);
 
                     //Code to Syncronize Hex
-                    bgColorHex = new BrushConverter().ConvertToString(Background);
+                    bgColorHex = ConversionFromBrushHex(Background);
                     SetBCCHexVal.Text = bgColorHex;
+
                 }
             }
             else
             {
                 bgColorB = 0;
-                Color bg = Color.FromArgb(bgColorA, bgColorR, bgColorG, bgColorB);
-                string colorbg = new ColorConverter().ConvertToString(bg);
-                Background = (Brush)new BrushConverter().ConvertFromString(colorbg);
+                Background = ConversionToBrushFromARGB(bgColorA, bgColorR, bgColorG, bgColorB);
 
                 //Code to Syncronize Hex
-                bgColorHex = new BrushConverter().ConvertToString(Background);
+                bgColorHex = ConversionFromBrushHex(Background);
                 SetBCCHexVal.Text = bgColorHex;
             }
         }
@@ -311,11 +571,10 @@ namespace SideBar
                 }
                 else
                 {
-                    Background = (Brush)new BrushConverter().ConvertFromString(bgColorHex);
+                    Background = ConversionToBrushHex(bgColorHex);
 
                     //Code to syncronize the ARGB
-                    string colorbg = new BrushConverter().ConvertToString(Background);
-                    Color bg = (Color)ColorConverter.ConvertFromString(colorbg);
+                    Color bg = ConversionToColorFromBrush(Background);
 
                     //Makes an unintended bug of putting a zero when user nulls the textbox
                     bgColorA = bg.A;
@@ -329,6 +588,386 @@ namespace SideBar
                     SetBCCARGBBVal.Text = bgColorB.ToString();
                 }
                 
+            }
+        }
+
+        //Text Color Changer Controls
+        private void SetTCCARGBAVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Alpha/Opacity SetTCC
+        {
+            if (Byte.TryParse(SetTCCARGBAVal.Text, out tColorA))
+            {
+                if (tColorA > 255)
+                {
+                    //do nothing
+                }
+                else
+                {
+                    ForegroundSet(ConversionToBrushFromARGB(tColorA,tColorR,tColorG,tColorB));
+
+                    //Code to Syncronize Hex
+                    tColorHex = ConversionFromBrushHex(ForegroundGet());
+                    SetTCCHexVal.Text = tColorHex;
+
+                }
+            }
+            else
+            {
+                tColorA = 0;
+                ForegroundSet(ConversionToBrushFromARGB(tColorA, tColorR, tColorG, tColorB));
+
+                //Code to Syncronize Hex
+                tColorHex = ConversionFromBrushHex(ForegroundGet());
+                SetTCCHexVal.Text = tColorHex;
+            }
+        }
+
+        private void SetTCCARGBRVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Red SetTCC
+        {
+            if (Byte.TryParse(SetTCCARGBRVal.Text, out tColorR))
+            {
+                if (tColorR > 255)
+                {
+                    //do nothing
+                }
+                else
+                {
+                    ForegroundSet(ConversionToBrushFromARGB(tColorA, tColorR, tColorG, tColorB));
+
+                    //Code to Syncronize Hex
+                    tColorHex = ConversionFromBrushHex(ForegroundGet());
+                    SetTCCHexVal.Text = tColorHex;
+
+                }
+            }
+            else
+            {
+                tColorR = 0;
+                ForegroundSet(ConversionToBrushFromARGB(tColorA, tColorR, tColorG, tColorB));
+
+                //Code to Syncronize Hex
+                tColorHex = ConversionFromBrushHex(ForegroundGet());
+                SetTCCHexVal.Text = tColorHex;
+            }
+        }
+
+        private void SetTCCARGBGVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Green SetTCC
+        {
+            if (Byte.TryParse(SetTCCARGBGVal.Text, out tColorG))
+            {
+                if (tColorG > 255)
+                {
+                    //do nothing
+                }
+                else
+                {
+                    ForegroundSet(ConversionToBrushFromARGB(tColorA, tColorR, tColorG, tColorB));
+
+                    //Code to Syncronize Hex
+                    tColorHex = ConversionFromBrushHex(ForegroundGet());
+                    SetTCCHexVal.Text = tColorHex;
+
+                }
+            }
+            else
+            {
+                tColorG = 0;
+                ForegroundSet(ConversionToBrushFromARGB(tColorA, tColorR, tColorG, tColorB));
+
+                //Code to Syncronize Hex
+                tColorHex = ConversionFromBrushHex(ForegroundGet());
+                SetTCCHexVal.Text = tColorHex;
+            }
+        }
+
+        private void SetTCCARGBBVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Blue SetTCC
+        {
+            if (Byte.TryParse(SetTCCARGBBVal.Text, out tColorB))
+            {
+                if (tColorB > 255)
+                {
+                    //do nothing
+                }
+                else
+                {
+                    ForegroundSet(ConversionToBrushFromARGB(tColorA, tColorR, tColorG, tColorB));
+
+                    //Code to Syncronize Hex
+                    tColorHex = ConversionFromBrushHex(ForegroundGet());
+                    SetTCCHexVal.Text = tColorHex;
+
+                }
+            }
+            else
+            {
+                tColorB = 0;
+                ForegroundSet(ConversionToBrushFromARGB(tColorA, tColorR, tColorG, tColorB));
+
+                //Code to Syncronize Hex
+                tColorHex = ConversionFromBrushHex(ForegroundGet());
+                SetTCCHexVal.Text = tColorHex;
+            }
+        }
+
+        private void SetTCCHexVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Hex SetTCC
+        {
+            tColorHex = SetTCCHexVal.Text;
+            Char[] chars = tColorHex.ToCharArray();
+
+            if (tColorHex == "")
+            {
+                SetTCCHexVal.Text = "#";
+            }
+            else
+            {
+                bool invalidFlag = false;
+                bool lengthFlag = false;
+
+                for (int i = 0; i < chars.Length; i++)
+                {
+                    if (chars.Length < 2)
+                    {
+                        SetTCCHexValLabel.Content = "Nothing";
+                        lengthFlag = true;
+                        break;
+                    }
+                    else if (chars.Length < 6)
+                    {
+                        SetTCCHexValLabel.Content = "Too Short";
+                        lengthFlag = true;
+                        break;
+                    }
+                    else if (chars.Length < 9)
+                    {
+                        SetTCCHexValLabel.Content = "Short";
+                        lengthFlag = true;
+                        break;
+                    }
+                    else if (ColorCharacterAvoidList.CheckChar(chars[i]) == 'y')
+                    {
+                        SetTCCHexValLabel.Content = "Invalid";
+                        invalidFlag = true;
+                        break;
+                    }
+                    else
+                    {
+                        SetTCCHexValLabel.Content = "";
+                        lengthFlag = false;
+                        invalidFlag = false;
+                    }
+                }
+                if (invalidFlag || lengthFlag)
+                {
+                    //do nothing
+                }
+                else
+                {
+                    ForegroundSet(ConversionToBrushHex(tColorHex));
+
+                    //Code to syncronize the ARGB
+                    Color t = ConversionToColorFromBrush(ForegroundGet());
+
+                    //Makes an unintended bug of putting a zero when user nulls the textbox
+                    tColorA = t.A;
+                    tColorR = t.R;
+                    tColorG = t.G;
+                    tColorB = t.B;
+
+                    SetTCCARGBAVal.Text = tColorA.ToString();
+                    SetTCCARGBRVal.Text = tColorR.ToString();
+                    SetTCCARGBGVal.Text = tColorG.ToString();
+                    SetTCCARGBBVal.Text = tColorB.ToString();
+                }
+
+            }
+        }
+
+        //Control Color Changer Controls
+        private void SetCCCARGBAVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Alpha/Opacity SetCCC
+        {
+            if (Byte.TryParse(SetCCCARGBAVal.Text, out cColorA))
+            {
+                if (cColorA > 255)
+                {
+                    //do nothing
+                }
+                else
+                {
+                    BackgroundTextBoxSet(ConversionToBrushFromARGB(cColorA, cColorR, cColorG, cColorB));
+
+                    //Code to Syncronize Hex
+                    cColorHex = ConversionFromBrushHex(BackgroundTextBoxGet());
+                    SetCCCHexVal.Text = cColorHex;
+
+                }
+            }
+            else
+            {
+                cColorA = 0;
+                BackgroundTextBoxSet(ConversionToBrushFromARGB(cColorA, cColorR, cColorG, cColorB));
+
+                //Code to Syncronize Hex 
+                cColorHex = ConversionFromBrushHex(BackgroundTextBoxGet());
+                SetCCCHexVal.Text = cColorHex;
+            }
+        }
+
+        private void SetCCCARGBRVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Red SetCCC
+        {
+            if (Byte.TryParse(SetCCCARGBRVal.Text, out cColorR))
+            {
+                if (cColorR > 255)
+                {
+                    //do nothing
+                }
+                else
+                {
+                    BackgroundTextBoxSet(ConversionToBrushFromARGB(cColorA, cColorR, cColorG, cColorB));
+
+                    //Code to Syncronize Hex
+                    cColorHex = ConversionFromBrushHex(BackgroundTextBoxGet());
+                    SetCCCHexVal.Text = cColorHex;
+
+                }
+            }
+            else
+            {
+                cColorR = 0;
+                BackgroundTextBoxSet(ConversionToBrushFromARGB(cColorA, cColorR, cColorG, cColorB));
+
+                //Code to Syncronize Hex 
+                cColorHex = ConversionFromBrushHex(BackgroundTextBoxGet());
+                SetCCCHexVal.Text = cColorHex;
+            }
+        }
+
+        private void SetCCCARGBGVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Green SetCCC
+        {
+            if (Byte.TryParse(SetCCCARGBGVal.Text, out cColorG))
+            {
+                if (cColorG > 255)
+                {
+                    //do nothing
+                }
+                else
+                {
+                    BackgroundTextBoxSet(ConversionToBrushFromARGB(cColorA, cColorR, cColorG, cColorB));
+
+                    //Code to Syncronize Hex
+                    cColorHex = ConversionFromBrushHex(BackgroundTextBoxGet());
+                    SetCCCHexVal.Text = cColorHex;
+
+                }
+            }
+            else
+            {
+                cColorG = 0;
+                BackgroundTextBoxSet(ConversionToBrushFromARGB(cColorA, cColorR, cColorG, cColorB));
+
+                //Code to Syncronize Hex 
+                cColorHex = ConversionFromBrushHex(BackgroundTextBoxGet());
+                SetCCCHexVal.Text = cColorHex;
+            }
+        }
+
+        private void SetCCCARGBBVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Blue SetCCC
+        {
+            if (Byte.TryParse(SetCCCARGBBVal.Text, out cColorB))
+            {
+                if (cColorB > 255)
+                {
+                    //do nothing
+                }
+                else
+                {
+                    BackgroundTextBoxSet(ConversionToBrushFromARGB(cColorA, cColorR, cColorG, cColorB));
+
+                    //Code to Syncronize Hex
+                    cColorHex = ConversionFromBrushHex(BackgroundTextBoxGet());
+                    SetCCCHexVal.Text = cColorHex;
+
+                }
+            }
+            else
+            {
+                cColorB = 0;
+                BackgroundTextBoxSet(ConversionToBrushFromARGB(cColorA, cColorR, cColorG, cColorB));
+
+                //Code to Syncronize Hex 
+                cColorHex = ConversionFromBrushHex(BackgroundTextBoxGet());
+                SetCCCHexVal.Text = cColorHex;
+            }
+        }
+
+        private void SetCCCHexVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Hex SetCCC
+        {
+            cColorHex = SetCCCHexVal.Text;
+            Char[] chars = tColorHex.ToCharArray();
+
+            if (cColorHex == "")
+            {
+                SetCCCHexVal.Text = "#";
+            }
+            else
+            {
+                bool invalidFlag = false;
+                bool lengthFlag = false;
+
+                for (int i = 0; i < chars.Length; i++)
+                {
+                    if (chars.Length < 2)
+                    {
+                        SetCCCHexValLabel.Content = "Nothing";
+                        lengthFlag = true;
+                        break;
+                    }
+                    else if (chars.Length < 6)
+                    {
+                        SetCCCHexValLabel.Content = "Too Short";
+                        lengthFlag = true;
+                        break;
+                    }
+                    else if (chars.Length < 9)
+                    {
+                        SetCCCHexValLabel.Content = "Short";
+                        lengthFlag = true;
+                        break;
+                    }
+                    else if (ColorCharacterAvoidList.CheckChar(chars[i]) == 'y')
+                    {
+                        SetCCCHexValLabel.Content = "Invalid";
+                        invalidFlag = true;
+                        break;
+                    }
+                    else
+                    {
+                        SetCCCHexValLabel.Content = "";
+                        lengthFlag = false;
+                        invalidFlag = false;
+                    }
+                }
+                if (invalidFlag || lengthFlag)
+                {
+                    //do nothing
+                }
+                else
+                {
+                    BackgroundTextBoxSet(ConversionToBrushHex(cColorHex));
+
+                    //Code to syncronize the ARGB
+                    Color c = ConversionToColorFromBrush(BackgroundTextBoxGet());
+
+                    //Makes an unintended bug of putting a zero when user nulls the textbox
+                    cColorA = c.A;
+                    cColorR = c.R;
+                    cColorG = c.G;
+                    cColorB = c.B;
+
+                    SetTCCARGBAVal.Text = cColorA.ToString();
+                    SetTCCARGBRVal.Text = cColorR.ToString();
+                    SetTCCARGBGVal.Text = cColorG.ToString();
+                    SetTCCARGBBVal.Text = cColorB.ToString();
+                }
+
             }
         }
     }
