@@ -13,7 +13,6 @@ Changelog:
 
 Version: 0.14<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Added Text Color Changer and Controls Color Changer.<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Controls Color Changer is Removed.
 
 Version: 0.13<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Improved upon Hex Color for Background Changer.<br />
