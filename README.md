@@ -1,6 +1,6 @@
 # SideBar
 
-Version: 0.12
+Version: 0.13
 
 WIP, Works in a simliar fashion to the Edge Bar.
 
@@ -19,3 +19,9 @@ Version: 0.11<br />
 
 Version: 0.12<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Added Background Color Changer to SideBar.
+
+Version: 0.13<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Improved upon Hex Color for Background Changer.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Changed Variable Names.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Color sync across TextBoxes.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Added ColorCharacterAvoidList class.
