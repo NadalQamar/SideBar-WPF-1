@@ -27,7 +27,7 @@ namespace SideBar
         byte bgColorR;
         byte bgColorG;
         byte bgColorB;
-        Color bgColorHex;
+        string bgColorHex;
         
         //Load on Startup
         public MainWindow()
@@ -44,7 +44,7 @@ namespace SideBar
             string colorbg = new BrushConverter().ConvertToString(Background);
             Color bg = (Color) ColorConverter.ConvertFromString(colorbg);
 
-            bgColorHex = bg;
+            bgColorHex = colorbg;
             bgColorA = bg.A;
             bgColorR = bg.R;
             bgColorG = bg.G;
@@ -113,11 +113,11 @@ namespace SideBar
                 BackgroundColorChangerPanel.IsEnabled = true;
                 settingsFlag = true;
 
-                SetBCCHexVal.Text = bgColorHex.ToString();
-                SetBCCAVal.Text = bgColorA.ToString();
-                SetBCCRVal.Text = bgColorR.ToString();
-                SetBCCGVal.Text = bgColorG.ToString();
-                SetBCCBVal.Text = bgColorB.ToString();
+                SetBCCHexVal.Text = bgColorHex;
+                SetBCCARGBAVal.Text = bgColorA.ToString();
+                SetBCCARGBRVal.Text = bgColorR.ToString();
+                SetBCCARGBGVal.Text = bgColorG.ToString();
+                SetBCCARGBBVal.Text = bgColorB.ToString();
             }
             else
             {
@@ -132,9 +132,9 @@ namespace SideBar
         }
 
         //Settings Panel Controls
-        private void SetBCCAVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Alpha/Opacity SetBCC
+        private void SetBCCARGBAVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Alpha/Opacity SetBCC
         {
-            if(Byte.TryParse(SetBCCAVal.Text, out bgColorA))
+            if(Byte.TryParse(SetBCCARGBAVal.Text, out bgColorA))
             {
                 if(bgColorA > 255)
                 {
@@ -145,6 +145,11 @@ namespace SideBar
                     Color bg = Color.FromArgb(bgColorA, bgColorR, bgColorG, bgColorB);
                     string colorbg = new ColorConverter().ConvertToString(bg);
                     Background = (Brush)new BrushConverter().ConvertFromString(colorbg);
+
+                    //Code to Syncronize Hex
+                    bgColorHex = new BrushConverter().ConvertToString(Background);
+                    SetBCCHexVal.Text = bgColorHex;
+
                 }
             }else
             {
@@ -152,12 +157,16 @@ namespace SideBar
                 Color bg = Color.FromArgb(bgColorA, bgColorR, bgColorG, bgColorB);
                 string colorbg = new ColorConverter().ConvertToString(bg);
                 Background = (Brush)new BrushConverter().ConvertFromString(colorbg);
+
+                //Code to Syncronize Hex
+                bgColorHex = new BrushConverter().ConvertToString(Background);
+                SetBCCHexVal.Text = bgColorHex;
             }
 
         }
-        private void SetBCCRVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Red SetBCC
+        private void SetBCCARGBRVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Red SetBCC
         {
-            if (Byte.TryParse(SetBCCRVal.Text, out bgColorR))
+            if (Byte.TryParse(SetBCCARGBRVal.Text, out bgColorR))
             {
                 if (bgColorR > 255)
                 {
@@ -168,6 +177,10 @@ namespace SideBar
                     Color bg = Color.FromArgb(bgColorA, bgColorR, bgColorG, bgColorB);
                     string colorbg = new ColorConverter().ConvertToString(bg);
                     Background = (Brush)new BrushConverter().ConvertFromString(colorbg);
+
+                    //Code to Syncronize Hex
+                    bgColorHex = new BrushConverter().ConvertToString(Background);
+                    SetBCCHexVal.Text = bgColorHex;
                 }
             }
             else
@@ -176,12 +189,16 @@ namespace SideBar
                 Color bg = Color.FromArgb(bgColorA, bgColorR, bgColorG, bgColorB);
                 string colorbg = new ColorConverter().ConvertToString(bg);
                 Background = (Brush)new BrushConverter().ConvertFromString(colorbg);
+
+                //Code to Syncronize Hex
+                bgColorHex = new BrushConverter().ConvertToString(Background);
+                SetBCCHexVal.Text = bgColorHex;
             }
 
         }
-        private void SetBCCGVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Green SetBCC
+        private void SetBCCARGBGVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Green SetBCC
         {
-            if (Byte.TryParse(SetBCCGVal.Text, out bgColorG))
+            if (Byte.TryParse(SetBCCARGBGVal.Text, out bgColorG))
             {
                 if (bgColorG > 255)
                 {
@@ -192,6 +209,10 @@ namespace SideBar
                     Color bg = Color.FromArgb(bgColorA, bgColorR, bgColorG, bgColorB);
                     string colorbg = new ColorConverter().ConvertToString(bg);
                     Background = (Brush)new BrushConverter().ConvertFromString(colorbg);
+
+                    //Code to Syncronize Hex
+                    bgColorHex = new BrushConverter().ConvertToString(Background);
+                    SetBCCHexVal.Text = bgColorHex;
                 }
             }
             else
@@ -200,11 +221,15 @@ namespace SideBar
                 Color bg = Color.FromArgb(bgColorA, bgColorR, bgColorG, bgColorB);
                 string colorbg = new ColorConverter().ConvertToString(bg);
                 Background = (Brush)new BrushConverter().ConvertFromString(colorbg);
+
+                //Code to Syncronize Hex
+                bgColorHex = new BrushConverter().ConvertToString(Background);
+                SetBCCHexVal.Text = bgColorHex;
             }
         }
-        private void SetBCCBVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Blue SetBCC
+        private void SetBCCARGBBVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Blue SetBCC
         {
-            if (Byte.TryParse(SetBCCBVal.Text, out bgColorB))
+            if (Byte.TryParse(SetBCCARGBBVal.Text, out bgColorB))
             {
                 if (bgColorB > 255)
                 {
@@ -215,6 +240,10 @@ namespace SideBar
                     Color bg = Color.FromArgb(bgColorA, bgColorR, bgColorG, bgColorB);
                     string colorbg = new ColorConverter().ConvertToString(bg);
                     Background = (Brush)new BrushConverter().ConvertFromString(colorbg);
+
+                    //Code to Syncronize Hex
+                    bgColorHex = new BrushConverter().ConvertToString(Background);
+                    SetBCCHexVal.Text = bgColorHex;
                 }
             }
             else
@@ -223,15 +252,84 @@ namespace SideBar
                 Color bg = Color.FromArgb(bgColorA, bgColorR, bgColorG, bgColorB);
                 string colorbg = new ColorConverter().ConvertToString(bg);
                 Background = (Brush)new BrushConverter().ConvertFromString(colorbg);
+
+                //Code to Syncronize Hex
+                bgColorHex = new BrushConverter().ConvertToString(Background);
+                SetBCCHexVal.Text = bgColorHex;
             }
         }
 
         private void SetBCCHexVal_TextChanged(object sender, TextChangedEventArgs e)//Any input to the Hex SetBCC
-        {//Improvement needed//run against a list that will look for specific characters to remove from input
-            string color = new ColorConverter().ConvertToString(bgColorHex);
-            Background = (Brush)new BrushConverter().ConvertFromString(color);
+        {
+            bgColorHex = SetBCCHexVal.Text;
+            Char[] chars = bgColorHex.ToCharArray();
+            
+            if(bgColorHex == "")
+            {
+                SetBCCHexVal.Text = "#";
+            }
+            else
+            {
+                bool invalidFlag = false;
+                bool lengthFlag = false;
 
-            //additonal code for change accross the board
+                for(int i = 0; i < chars.Length; i++)
+                {
+                    if (chars.Length < 2)
+                    {
+                        SetBCCHexValLabel.Content = "Nothing";
+                        lengthFlag = true;
+                        break;
+                    }
+                    else if (chars.Length < 6)
+                    {
+                        SetBCCHexValLabel.Content = "Too Short";
+                        lengthFlag = true;
+                        break;
+                    }
+                    else if(chars.Length < 9)
+                    {
+                        SetBCCHexValLabel.Content = "Short";
+                        lengthFlag = true;
+                        break;
+                    }
+                    else if(ColorCharacterAvoidList.CheckChar(chars[i]) == 'y'){
+                        SetBCCHexValLabel.Content = "Invalid";
+                        invalidFlag = true;
+                        break;
+                    }
+                    else
+                    {
+                        SetBCCHexValLabel.Content = "";
+                        lengthFlag = false;
+                        invalidFlag = false;
+                    }
+                }
+                if (invalidFlag || lengthFlag)
+                {
+                    //do nothing
+                }
+                else
+                {
+                    Background = (Brush)new BrushConverter().ConvertFromString(bgColorHex);
+
+                    //Code to syncronize the ARGB
+                    string colorbg = new BrushConverter().ConvertToString(Background);
+                    Color bg = (Color)ColorConverter.ConvertFromString(colorbg);
+
+                    //Makes an unintended bug of putting a zero when user nulls the textbox
+                    bgColorA = bg.A;
+                    bgColorR = bg.R;
+                    bgColorG = bg.G;
+                    bgColorB = bg.B;
+
+                    SetBCCARGBAVal.Text = bgColorA.ToString();
+                    SetBCCARGBRVal.Text = bgColorR.ToString();
+                    SetBCCARGBGVal.Text = bgColorG.ToString();
+                    SetBCCARGBBVal.Text = bgColorB.ToString();
+                }
+                
+            }
         }
     }
 }
