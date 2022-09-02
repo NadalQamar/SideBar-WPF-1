@@ -1,6 +1,6 @@
 # SideBar
 
-Version: 0.13
+Version: 0.14
 
 WIP, Works in a simliar fashion to the Edge Bar.
 
@@ -11,17 +11,27 @@ If you need to remove the console, just go to Solutions Explorer > Properties of
 
 Changelog:
 
-Version: 0.10<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Added files to GitHub.
-
-Version: 0.11<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Added three buttons to SideBar.
-
-Version: 0.12<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Added Background Color Changer to SideBar.
+Version: 0.14<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Added Text Color Changer and Controls Color Changer.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Controls Color Changer is Buggy.
 
 Version: 0.13<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Improved upon Hex Color for Background Changer.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Changed Variable Names.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Color sync across TextBoxes.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Added ColorCharacterAvoidList class.
+
+Version: 0.12<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Added Background Color Changer to SideBar.
+
+Version: 0.11<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Added three buttons to SideBar.
+
+Version: 0.10<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Added files to GitHub.
+
+
+
+
+
+
