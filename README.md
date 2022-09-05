@@ -1,6 +1,6 @@
 # SideBar
 
-Version: 0.14
+Version: 0.15
 
 WIP, Works in a simliar fashion to the Edge Bar.
 
@@ -10,6 +10,11 @@ Made in C# WPF App (.NET Framework) Template [Visual Studio 2022]].
 If you need to remove the console, just go to Solutions Explorer > Properties of SideBar, than change the output type to Windows Application. 
 
 Changelog:
+
+Version: 0.15<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fixed the Primary SideBar Panel taking the entire width below when expanded.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Added two methods.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Added WebBrowser Control.<br />
 
 Version: 0.14<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Added Text Color Changer and Controls Color Changer.<br />
