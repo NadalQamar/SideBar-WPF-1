@@ -21,6 +21,7 @@ namespace SideBar
     public partial class MainWindow : Window
     {
         //field values
+        bool wbButtonFlag = false;
         bool accessFlag = false;//For Mouse Entry to and from SideBar
         bool settingsFlag = false;//For When user clicks on setting button
         byte bgColorA;//Color of the Background
@@ -47,13 +48,13 @@ namespace SideBar
             Height = SystemParameters.PrimaryScreenHeight;
             Left = SystemParameters.PrimaryScreenWidth - 2;
             ControlBox.Height = SystemParameters.PrimaryScreenHeight;
+            PrimarySideBarPanel.Margin = new Thickness(10, SystemParameters.PrimaryScreenHeight - 100, 10, 20);
 
-            BackgroundColorChangerPanel.IsEnabled = false;
-            BackgroundColorChangerPanel.Visibility = Visibility.Hidden;
+            WebBrowserButtonGroupComponent.Margin = new Thickness(10, 36, 10, 0);
 
             //Background Color Get
             string colorbg = new BrushConverter().ConvertToString(Background);
-            Color bg = (Color) ColorConverter.ConvertFromString(colorbg);
+            Color bg = (Color)ColorConverter.ConvertFromString(colorbg);
 
             bgColorHex = colorbg;
             bgColorA = bg.A;
@@ -84,6 +85,25 @@ namespace SideBar
         }
         
         //Methods
+        private void ExpandBar()
+        {
+            Left = SystemParameters.PrimaryScreenWidth - 550;
+            Width = 550;
+            ControlBox.Margin = new Thickness(-550, 0, 0, 0);
+            PrimarySideBarPanel.Margin = new Thickness(520, SystemParameters.PrimaryScreenHeight - 100, 10, 20);
+
+            WebBrowserButtonGroupComponent.Margin = new Thickness(520, 36, 10, 0);
+        }
+
+        private void CollapseBar()
+        {
+            Left = SystemParameters.PrimaryScreenWidth - 40;
+            Width = 40;
+            ControlBox.Margin = new Thickness(-35, 0, 0, 0);
+            PrimarySideBarPanel.Margin = new Thickness(10, SystemParameters.PrimaryScreenHeight - 100, 10, 20);
+
+            WebBrowserButtonGroupComponent.Margin = new Thickness(10, 36, 10, 0);
+        }
         private Brush ForegroundGet()
         {
             Brush brush;
@@ -285,17 +305,58 @@ namespace SideBar
             return (Color)ColorConverter.ConvertFromString(color);
 
         }
-        
+
+        //WebBrowser Controls
+        private void WebBrowserButtonComponent_Click(object sender, RoutedEventArgs e)
+        {
+            if(wbButtonFlag == false)
+            {
+                ExpandBar();
+
+                WebBrowserComponent.IsEnabled = true;
+                WebBrowserComponent.Visibility = Visibility.Visible;
+
+                WBFirstComponent.Navigate(new Uri("https://www.google.com"));
+
+                wbButtonFlag = true;
+            }
+            else
+            {
+                CollapseBar();
+
+                WebBrowserComponent.IsEnabled = false;
+                WebBrowserComponent.Visibility = Visibility.Hidden;
+
+                wbButtonFlag = false;
+            }
+
+        }
+
         //SideBar Controls
         private void ControlBox_MouseEnter(object sender, MouseEventArgs e)//EventHandler for whe the user mouse hover enters/leaves the Sidebar
         {
-            if(accessFlag == true && settingsFlag == true)
+            if(accessFlag == true && wbButtonFlag == true)
+            {
+                Left = SystemParameters.PrimaryScreenWidth - 2;
+                Width = 40;
+                ControlBox.Margin = new Thickness(-35, 0, 0, 0);
+                PrimarySideBarPanel.Margin = new Thickness(10, SystemParameters.PrimaryScreenHeight - 100, 10, 20);
+
+                WebBrowserButtonGroupComponent.Margin = new Thickness(10, 36, 10, 0);
+
+                accessFlag = false;
+                wbButtonFlag = false;
+            }
+            else if(accessFlag == true && settingsFlag == true)
             {
                 Left = SystemParameters.PrimaryScreenWidth - 2;
                 Width = 40;
                 ControlBox.Margin = new Thickness(-35,0,0,0);
-                BackgroundColorChangerPanel.Visibility = Visibility.Hidden;
-                BackgroundColorChangerPanel.IsEnabled = false;
+                PrimarySideBarPanel.Margin = new Thickness(10, SystemParameters.PrimaryScreenHeight - 100, 10, 20);
+
+                ColorChangerPanel.Visibility = Visibility.Hidden;
+                ColorChangerPanel.IsEnabled = false;
+                
                 accessFlag = false;
                 settingsFlag = false;
             }
@@ -341,11 +402,11 @@ namespace SideBar
         {
             if(settingsFlag == false)
             {
-                Left = SystemParameters.PrimaryScreenWidth - 550;
-                Width = 550;
-                ControlBox.Margin = new Thickness(-550,0,0,0);
-                BackgroundColorChangerPanel.Visibility = Visibility.Visible;
-                BackgroundColorChangerPanel.IsEnabled = true;
+                ExpandBar();
+
+                ColorChangerPanel.Visibility = Visibility.Visible;
+                ColorChangerPanel.IsEnabled = true;
+                
                 settingsFlag = true;
 
                 //Background Color Display
@@ -371,11 +432,11 @@ namespace SideBar
             }
             else
             {
-                Left = SystemParameters.PrimaryScreenWidth - 40;
-                Width = 40;
-                ControlBox.Margin = new Thickness(-35, 0, 0, 0);
-                BackgroundColorChangerPanel.Visibility = Visibility.Hidden;
-                BackgroundColorChangerPanel.IsEnabled = false;
+                CollapseBar();
+
+                ColorChangerPanel.Visibility = Visibility.Hidden;
+                ColorChangerPanel.IsEnabled = false;
+                
                 settingsFlag = false;
             }
 
@@ -949,5 +1010,6 @@ namespace SideBar
 
             }
         }
+        
     }
 }

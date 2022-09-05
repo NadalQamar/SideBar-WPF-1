@@ -11,7 +11,7 @@
         WindowStartupLocation="Manual"
         Top="0"
         WindowStyle="None"
-        AllowsTransparency="True"
+        AllowsTransparency="False"
         WindowState="Normal"
         ShowInTaskbar="False" 
         HorizontalContentAlignment="Stretch" 
@@ -29,7 +29,7 @@
                Panel.ZIndex="0"
                UIElement.MouseEnter="ControlBox_MouseEnter"
                />
-        <!--Contains the main buttons-->
+        <!--Contains the main buttons, start of Primary SideBar Panel-->
         <WrapPanel x:Name="PrimarySideBarPanel" 
                    Margin="10,980,10,20" 
                    Orientation="Vertical" 
@@ -61,473 +61,505 @@
                     Margin="0,0,0,0"
                     />
         </WrapPanel>
-        <!-- Contains the Background Color Changer Controls-->
-        <WrapPanel x:Name="BackgroundColorChangerPanel" 
-                   HorizontalAlignment="Left" 
-                   Margin="36,36,0,0"  
-                   VerticalAlignment="Top" 
-                   RenderTransformOrigin="0.5,0.5"
-                   Orientation="Vertical" 
+        <!--End of Primary SideBar Panel-->
+        <!--Start of Color Changer Panel-->
+        <WrapPanel x:Name="ColorChangerPanel"
+                   Margin="36,36,36,36"
+                   IsEnabled="False"
+                   Visibility="Hidden"
                    Panel.ZIndex="2"
                    >
-            <Label x:Name="SetBCCLabel" 
-                   Content="Background Color Changer" 
-                   VerticalAlignment="Top" 
-                   HorizontalAlignment="Left" 
-                   Padding="0,0,0,0" 
-                   FontFamily="HP Simplified" 
-                   FontSize="16"
-                   />
-            <!-- Contains the ARGB set of controls for Background -->
-            <WrapPanel x:Name="BackgroundColorSubChangerPanel1"
+            <!-- Contains the Background Color Changer Controls-->
+            <WrapPanel x:Name="BackgroundColorChangerPanel" 
                        HorizontalAlignment="Left" 
                        Margin="0,0,0,0"  
                        VerticalAlignment="Top" 
                        RenderTransformOrigin="0.5,0.5"
-                       Orientation="Horizontal"
+                       Orientation="Vertical" 
                        >
-                <!-- Contains the ARGB Entry Controls for Background -->
-                <WrapPanel x:Name="BackgroundColorChangerARGBValPanel" 
-                           HorizontalAlignment="Left" 
-                           Orientation="Vertical" 
-                           VerticalAlignment="Top"
-                           >
-                    <TextBox x:Name="SetBCCARGBAVal" 
-                             HorizontalAlignment="Center" 
-                             TextWrapping="Wrap" 
-                             VerticalAlignment="Center" 
-                             Width="30" 
-                             TextChanged="SetBCCARGBAVal_TextChanged"
-                             Margin="0,2,0,5"
-                             MaxLength="3"
-                              />
-                    <TextBox x:Name="SetBCCARGBRVal" 
-                             HorizontalAlignment="Left" 
-                             TextWrapping="Wrap" 
-                             VerticalAlignment="Center" 
-                             Width="30" 
-                             TextChanged ="SetBCCARGBRVal_TextChanged"
-                             Margin="0,0,0,5"
-                             MaxLength="3"
-                             />
-                    <TextBox x:Name="SetBCCARGBGVal" 
-                             HorizontalAlignment="Left" 
-                             TextWrapping="Wrap" 
-                             VerticalAlignment="Top" 
-                             Width="30"
-                             TextChanged="SetBCCARGBGVal_TextChanged"
-                             Margin="0,0,0,5"
-                             MaxLength="3"
-                             />
-                    <TextBox x:Name="SetBCCARGBBVal" 
-                             HorizontalAlignment="Left" 
-                             TextWrapping="Wrap" 
-                             VerticalAlignment="Top" 
-                             Width="30"
-                             TextChanged="SetBCCARGBBVal_TextChanged"
-                             Margin="0,0,0,0" 
-                             MaxLength="3"
-                             />
-                </WrapPanel>
-                <!-- Contains the ARGB Information Controls for Background-->
-                <WrapPanel x:Name="BackgroundColorChangerARGBLabelPanel" 
-                           HorizontalAlignment="Left" 
-                           Orientation="Vertical" 
-                           VerticalAlignment="Top"
-                           >
-                    <Label x:Name="SetBCCARGBALabel" 
-                           Content="0-255 Alpha-Opacity" 
-                           HorizontalAlignment="Left" 
-                           Height="25" 
-                           FontSize="12" 
-                           ForceCursor="True" 
-                           VerticalAlignment="Center" 
-                           Margin="0,-1,0,0" 
-                           FontFamily="HP Simplified Light"
-                           />
-                    <Label x:Name="SetBCCARGBRLabel" 
-                           Content="0-255 Red" 
-                           HorizontalAlignment="Left" 
-                           Height="25" FontSize="12" 
-                           ForceCursor="True" 
-                           VerticalAlignment="Top" 
-                           Margin="0,-2,0,0" 
-                           FontFamily="HP Simplified Light"
-                           />
-                    <Label x:Name="SetBCCARGBGLabel" 
-                           Content="0-255 Green" 
-                           HorizontalAlignment="Left" 
-                           Height="25" 
-                           FontSize="12" 
-                           ForceCursor="True" 
-                           VerticalAlignment="Center" 
-                           Margin="0,-2,0,0" 
-                           FontFamily="HP Simplified Light"
-                           />
-                    <Label x:Name="SetBCCARGBBLabel" 
-                           Content="0-255 Blue" 
-                           HorizontalAlignment="Left" 
-                           Height="25" 
-                           FontSize="12" 
-                           ForceCursor="True" 
-                           VerticalAlignment="Top" 
-                           Margin="0,-2,0,0" 
-                           FontFamily="HP Simplified Light"
-                           />
-                </WrapPanel>
-            </WrapPanel>
-            <!-- Contains the Hex Color set of controls for Background -->
-            <WrapPanel x:Name="BackgroundColorSubChangerPanel2"
-                       HorizontalAlignment="Left"  
+                <Label x:Name="SetBCCLabel" 
+                       Content="Background Color Changer" 
                        VerticalAlignment="Top" 
-                       RenderTransformOrigin="0.5,0.5"
-                       Orientation="Vertical"
-                       >
-                <!-- Contains the Hex Entry and Error Display Controls for Background-->
-                <WrapPanel x:Name="BackgroundColorChangerHexValPanel"
+                       HorizontalAlignment="Left" 
+                       Padding="0,0,0,0" 
+                       FontFamily="HP Simplified" 
+                       FontSize="16"
+                       />
+                <!-- Contains the ARGB set of controls for Background -->
+                <WrapPanel x:Name="BackgroundColorSubChangerPanel1"
                            HorizontalAlignment="Left" 
                            Margin="0,0,0,0"  
                            VerticalAlignment="Top" 
                            RenderTransformOrigin="0.5,0.5"
                            Orientation="Horizontal"
-                    >
-                    <TextBox x:Name="SetBCCHexVal" 
-                             TextWrapping="Wrap" 
-                             Width="76" 
-                             HorizontalAlignment="Left"
-                             MaxLength="9"
-                             TextChanged="SetBCCHexVal_TextChanged"
-                         />
-                    <Label x:Name="SetBCCHexValLabel" 
-                           Padding="5,1,0,0"
-                           HorizontalAlignment="Left"
-                           HorizontalContentAlignment="Right" 
-                           Width="58" 
+                           >
+                    <!-- Contains the ARGB Entry Controls for Background -->
+                    <WrapPanel x:Name="BackgroundColorChangerARGBValPanel" 
+                               HorizontalAlignment="Left" 
+                               Orientation="Vertical" 
+                               VerticalAlignment="Top"
+                               >
+                        <TextBox x:Name="SetBCCARGBAVal" 
+                                 HorizontalAlignment="Center" 
+                                 TextWrapping="Wrap" 
+                                 VerticalAlignment="Center" 
+                                 Width="30" 
+                                 TextChanged="SetBCCARGBAVal_TextChanged"
+                                 Margin="0,2,0,5"
+                                 MaxLength="3"
+                                  />
+                        <TextBox x:Name="SetBCCARGBRVal" 
+                                 HorizontalAlignment="Left" 
+                                 TextWrapping="Wrap" 
+                                 VerticalAlignment="Center" 
+                                 Width="30" 
+                                 TextChanged ="SetBCCARGBRVal_TextChanged"
+                                 Margin="0,0,0,5"
+                                 MaxLength="3"
+                                 />
+                        <TextBox x:Name="SetBCCARGBGVal" 
+                                 HorizontalAlignment="Left" 
+                                 TextWrapping="Wrap" 
+                                 VerticalAlignment="Top" 
+                                 Width="30"
+                                 TextChanged="SetBCCARGBGVal_TextChanged"
+                                 Margin="0,0,0,5"
+                                 MaxLength="3"
+                                 />
+                        <TextBox x:Name="SetBCCARGBBVal" 
+                                 HorizontalAlignment="Left" 
+                                 TextWrapping="Wrap" 
+                                 VerticalAlignment="Top" 
+                                 Width="30"
+                                 TextChanged="SetBCCARGBBVal_TextChanged"
+                                 Margin="0,0,0,0" 
+                                 MaxLength="3"
+                                 />
+                    </WrapPanel>
+                    <!-- Contains the ARGB Information Controls for Background-->
+                    <WrapPanel x:Name="BackgroundColorChangerARGBLabelPanel" 
+                               HorizontalAlignment="Left" 
+                               Orientation="Vertical" 
+                               VerticalAlignment="Top"
+                               >
+                        <Label x:Name="SetBCCARGBALabel" 
+                               Content="0-255 Alpha-Opacity" 
+                               HorizontalAlignment="Left" 
+                               Height="25" 
+                               FontSize="12" 
+                               ForceCursor="True" 
+                               VerticalAlignment="Center" 
+                               Margin="0,-1,0,0" 
+                               FontFamily="HP Simplified Light"
+                               />
+                        <Label x:Name="SetBCCARGBRLabel" 
+                               Content="0-255 Red" 
+                               HorizontalAlignment="Left" 
+                               Height="25" FontSize="12" 
+                               ForceCursor="True" 
+                               VerticalAlignment="Top" 
+                               Margin="0,-2,0,0" 
+                               FontFamily="HP Simplified Light"
+                               />
+                        <Label x:Name="SetBCCARGBGLabel" 
+                               Content="0-255 Green" 
+                               HorizontalAlignment="Left" 
+                               Height="25" 
+                               FontSize="12" 
+                               ForceCursor="True" 
+                               VerticalAlignment="Center" 
+                               Margin="0,-2,0,0" 
+                               FontFamily="HP Simplified Light"
+                               />
+                        <Label x:Name="SetBCCARGBBLabel" 
+                               Content="0-255 Blue" 
+                               HorizontalAlignment="Left" 
+                               Height="25" 
+                               FontSize="12" 
+                               ForceCursor="True" 
+                               VerticalAlignment="Top" 
+                               Margin="0,-2,0,0" 
+                               FontFamily="HP Simplified Light"
+                               />
+                    </WrapPanel>
+                </WrapPanel>
+                <!-- Contains the Hex Color set of controls for Background -->
+                <WrapPanel x:Name="BackgroundColorSubChangerPanel2"
+                           HorizontalAlignment="Left"  
+                           VerticalAlignment="Top" 
+                           RenderTransformOrigin="0.5,0.5"
+                           Orientation="Vertical"
+                           >
+                    <!-- Contains the Hex Entry and Error Display Controls for Background-->
+                    <WrapPanel x:Name="BackgroundColorChangerHexValPanel"
+                               HorizontalAlignment="Left" 
+                               Margin="0,0,0,0"  
+                               VerticalAlignment="Top" 
+                               RenderTransformOrigin="0.5,0.5"
+                               Orientation="Horizontal"
+                        >
+                        <TextBox x:Name="SetBCCHexVal" 
+                                 TextWrapping="Wrap" 
+                                 Width="76" 
+                                 HorizontalAlignment="Left"
+                                 MaxLength="9"
+                                 TextChanged="SetBCCHexVal_TextChanged"
+                             />
+                        <Label x:Name="SetBCCHexValLabel" 
+                               Padding="5,1,0,0"
+                               HorizontalAlignment="Left"
+                               HorizontalContentAlignment="Right" 
+                               Width="58" 
+                               FontFamily="HP Simplified Light"
+                               />
+                    </WrapPanel>
+                    <!-- Contains the Hex Information Control for Background-->
+                    <Label x:Name="SetBCCHexLabel" 
+                           Content="Enter HexColor #AARRGGBB"
+                           Margin="0,0,0,0" 
+                           HorizontalAlignment="Left" 
+                           Padding="0,2,0,0" 
                            FontFamily="HP Simplified Light"
                            />
-                </WrapPanel>
-                <!-- Contains the Hex Information Control for Background-->
-                <Label x:Name="SetBCCHexLabel" 
-                       Content="Enter HexColor #AARRGGBB"
-                       Margin="0,0,0,0" 
-                       HorizontalAlignment="Left" 
-                       Padding="0,2,0,0" 
-                       FontFamily="HP Simplified Light"
-                       />
 
+                </WrapPanel>
             </WrapPanel>
-        </WrapPanel>
-        <!-- Contains the Text Color Changer Controls-->
-        <WrapPanel x:Name="TextColorChangerPanel" 
-                   HorizontalAlignment="Left" 
-                   Margin="222,36,0,0"  
-                   VerticalAlignment="Top" 
-                   RenderTransformOrigin="0.5,0.5"
-                   Orientation="Vertical" 
-                   Panel.ZIndex="2"
-                   >
-            <Label x:Name="SetTCCLabel" 
-                   Content="Text Color Changer" 
-                   VerticalAlignment="Top" 
-                   HorizontalAlignment="Left" 
-                   Padding="0,0,0,0" 
-                   FontFamily="HP Simplified" 
-                   FontSize="16"
-                   />
-            <!-- Contains the ARGB set of controls for Text-->
-            <WrapPanel x:Name="TextColorSubChangerPanel1"
+            <!-- Contains the Text Color Changer Controls-->
+            <WrapPanel x:Name="TextColorChangerPanel" 
                        HorizontalAlignment="Left" 
-                       Margin="0,0,0,0"  
+                       Margin="10,0,0,0"  
                        VerticalAlignment="Top" 
                        RenderTransformOrigin="0.5,0.5"
-                       Orientation="Horizontal"
+                       Orientation="Vertical" 
                        >
-                <!-- Contains the ARGB Entry Controls for Text -->
-                <WrapPanel x:Name="TextColorChangerARGBValPanel" 
-                           HorizontalAlignment="Left" 
-                           Orientation="Vertical" 
-                           VerticalAlignment="Top"
-                           >
-                    <TextBox x:Name="SetTCCARGBAVal" 
-                             HorizontalAlignment="Center" 
-                             TextWrapping="Wrap" 
-                             VerticalAlignment="Center" 
-                             Width="30" 
-                             TextChanged="SetTCCARGBAVal_TextChanged"
-                             Margin="0,2,0,5"
-                             MaxLength="3"
-                              />
-                    <TextBox x:Name="SetTCCARGBRVal" 
-                             HorizontalAlignment="Left" 
-                             TextWrapping="Wrap" 
-                             VerticalAlignment="Center" 
-                             Width="30" 
-                             TextChanged="SetTCCARGBRVal_TextChanged"
-                             Margin="0,0,0,5"
-                             MaxLength="3"
-                             />
-                    <TextBox x:Name="SetTCCARGBGVal" 
-                             HorizontalAlignment="Left" 
-                             TextWrapping="Wrap" 
-                             VerticalAlignment="Top" 
-                             Width="30"
-                             TextChanged="SetTCCARGBGVal_TextChanged"
-                             Margin="0,0,0,5"
-                             MaxLength="3"
-                             />
-                    <TextBox x:Name="SetTCCARGBBVal" 
-                             HorizontalAlignment="Left" 
-                             TextWrapping="Wrap" 
-                             VerticalAlignment="Top" 
-                             Width="30"
-                             TextChanged="SetTCCARGBBVal_TextChanged"
-                             Margin="0,0,0,0" 
-                             MaxLength="3"
-                             />
-                </WrapPanel>
-                <!-- Contains the ARGB Information Controls for Text -->
-                <WrapPanel x:Name="TextColorChangerARGBLabelPanel" 
-                           HorizontalAlignment="Left" 
-                           Orientation="Vertical" 
-                           VerticalAlignment="Top"
-                           >
-                    <Label x:Name="SetTCCARGBALabel" 
-                           Content="0-255 Alpha-Opacity" 
-                           HorizontalAlignment="Left" 
-                           Height="25" 
-                           FontSize="12" 
-                           ForceCursor="True" 
-                           VerticalAlignment="Center" 
-                           Margin="0,-1,0,0" 
-                           FontFamily="HP Simplified Light"
-                           />
-                    <Label x:Name="SetTCCARGBRLabel" 
-                           Content="0-255 Red" 
-                           HorizontalAlignment="Left" 
-                           Height="25" FontSize="12" 
-                           ForceCursor="True" 
-                           VerticalAlignment="Top" 
-                           Margin="0,-2,0,0" 
-                           FontFamily="HP Simplified Light"
-                           />
-                    <Label x:Name="SetTCCARGBGLabel" 
-                           Content="0-255 Green" 
-                           HorizontalAlignment="Left" 
-                           Height="25" 
-                           FontSize="12" 
-                           ForceCursor="True" 
-                           VerticalAlignment="Center" 
-                           Margin="0,-2,0,0" 
-                           FontFamily="HP Simplified Light"
-                           />
-                    <Label x:Name="SetTCCARGBBLabel" 
-                           Content="0-255 Blue" 
-                           HorizontalAlignment="Left" 
-                           Height="25" 
-                           FontSize="12" 
-                           ForceCursor="True" 
-                           VerticalAlignment="Top" 
-                           Margin="0,-2,0,0" 
-                           FontFamily="HP Simplified Light"
-                           />
-                </WrapPanel>
-            </WrapPanel>
-            <!-- Contains the Hex Color set of controls for Text-->
-            <WrapPanel x:Name="TextColorSubChangerPanel2"
-                       HorizontalAlignment="Left"  
+                <Label x:Name="SetTCCLabel" 
+                       Content="Text Color Changer" 
                        VerticalAlignment="Top" 
-                       RenderTransformOrigin="0.5,0.5"
-                       Orientation="Vertical"
-                       >
-                <!-- Contains the Hex Entry and Error Display Controls for Text -->
-                <WrapPanel x:Name="TextColorChangerHexValPanel"
+                       HorizontalAlignment="Left" 
+                       Padding="0,0,0,0" 
+                       FontFamily="HP Simplified" 
+                       FontSize="16"
+                       />
+                <!-- Contains the ARGB set of controls for Text-->
+                <WrapPanel x:Name="TextColorSubChangerPanel1"
                            HorizontalAlignment="Left" 
                            Margin="0,0,0,0"  
                            VerticalAlignment="Top" 
                            RenderTransformOrigin="0.5,0.5"
                            Orientation="Horizontal"
-                    >
-                    <TextBox x:Name="SetTCCHexVal" 
-                             TextWrapping="Wrap" 
-                             Width="76" 
-                             HorizontalAlignment="Left"
-                             MaxLength="9"
-                             TextChanged="SetTCCHexVal_TextChanged"
-                         />
-                    <Label x:Name="SetTCCHexValLabel" 
-                           Padding="5,1,0,0"
-                           HorizontalAlignment="Left"
-                           HorizontalContentAlignment="Right" 
-                           Width="58" 
+                           >
+                    <!-- Contains the ARGB Entry Controls for Text -->
+                    <WrapPanel x:Name="TextColorChangerARGBValPanel" 
+                               HorizontalAlignment="Left" 
+                               Orientation="Vertical" 
+                               VerticalAlignment="Top"
+                               >
+                        <TextBox x:Name="SetTCCARGBAVal" 
+                                 HorizontalAlignment="Center" 
+                                 TextWrapping="Wrap" 
+                                 VerticalAlignment="Center" 
+                                 Width="30" 
+                                 TextChanged="SetTCCARGBAVal_TextChanged"
+                                 Margin="0,2,0,5"
+                                 MaxLength="3"
+                                  />
+                        <TextBox x:Name="SetTCCARGBRVal" 
+                                 HorizontalAlignment="Left" 
+                                 TextWrapping="Wrap" 
+                                 VerticalAlignment="Center" 
+                                 Width="30" 
+                                 TextChanged="SetTCCARGBRVal_TextChanged"
+                                 Margin="0,0,0,5"
+                                 MaxLength="3"
+                                 />
+                        <TextBox x:Name="SetTCCARGBGVal" 
+                                 HorizontalAlignment="Left" 
+                                 TextWrapping="Wrap" 
+                                 VerticalAlignment="Top" 
+                                 Width="30"
+                                 TextChanged="SetTCCARGBGVal_TextChanged"
+                                 Margin="0,0,0,5"
+                                 MaxLength="3"
+                                 />
+                        <TextBox x:Name="SetTCCARGBBVal" 
+                                 HorizontalAlignment="Left" 
+                                 TextWrapping="Wrap" 
+                                 VerticalAlignment="Top" 
+                                 Width="30"
+                                 TextChanged="SetTCCARGBBVal_TextChanged"
+                                 Margin="0,0,0,0" 
+                                 MaxLength="3"
+                                 />
+                    </WrapPanel>
+                    <!-- Contains the ARGB Information Controls for Text -->
+                    <WrapPanel x:Name="TextColorChangerARGBLabelPanel" 
+                               HorizontalAlignment="Left" 
+                               Orientation="Vertical" 
+                               VerticalAlignment="Top"
+                               >
+                        <Label x:Name="SetTCCARGBALabel" 
+                               Content="0-255 Alpha-Opacity" 
+                               HorizontalAlignment="Left" 
+                               Height="25" 
+                               FontSize="12" 
+                               ForceCursor="True" 
+                               VerticalAlignment="Center" 
+                               Margin="0,-1,0,0" 
+                               FontFamily="HP Simplified Light"
+                               />
+                        <Label x:Name="SetTCCARGBRLabel" 
+                               Content="0-255 Red" 
+                               HorizontalAlignment="Left" 
+                               Height="25" FontSize="12" 
+                               ForceCursor="True" 
+                               VerticalAlignment="Top" 
+                               Margin="0,-2,0,0" 
+                               FontFamily="HP Simplified Light"
+                               />
+                        <Label x:Name="SetTCCARGBGLabel" 
+                               Content="0-255 Green" 
+                               HorizontalAlignment="Left" 
+                               Height="25" 
+                               FontSize="12" 
+                               ForceCursor="True" 
+                               VerticalAlignment="Center" 
+                               Margin="0,-2,0,0" 
+                               FontFamily="HP Simplified Light"
+                               />
+                        <Label x:Name="SetTCCARGBBLabel" 
+                               Content="0-255 Blue" 
+                               HorizontalAlignment="Left" 
+                               Height="25" 
+                               FontSize="12" 
+                               ForceCursor="True" 
+                               VerticalAlignment="Top" 
+                               Margin="0,-2,0,0" 
+                               FontFamily="HP Simplified Light"
+                               />
+                    </WrapPanel>
+                </WrapPanel>
+                <!-- Contains the Hex Color set of controls for Text-->
+                <WrapPanel x:Name="TextColorSubChangerPanel2"
+                           HorizontalAlignment="Left"  
+                           VerticalAlignment="Top" 
+                           RenderTransformOrigin="0.5,0.5"
+                           Orientation="Vertical"
+                           >
+                    <!-- Contains the Hex Entry and Error Display Controls for Text -->
+                    <WrapPanel x:Name="TextColorChangerHexValPanel"
+                               HorizontalAlignment="Left" 
+                               Margin="0,0,0,0"  
+                               VerticalAlignment="Top" 
+                               RenderTransformOrigin="0.5,0.5"
+                               Orientation="Horizontal"
+                        >
+                        <TextBox x:Name="SetTCCHexVal" 
+                                 TextWrapping="Wrap" 
+                                 Width="76" 
+                                 HorizontalAlignment="Left"
+                                 MaxLength="9"
+                                 TextChanged="SetTCCHexVal_TextChanged"
+                             />
+                        <Label x:Name="SetTCCHexValLabel" 
+                               Padding="5,1,0,0"
+                               HorizontalAlignment="Left"
+                               HorizontalContentAlignment="Right" 
+                               Width="58" 
+                               FontFamily="HP Simplified Light"
+                               />
+                    </WrapPanel>
+                    <!-- Contains the Hex Information Control for Text -->
+                    <Label x:Name="SetTCCHexLabel" 
+                           Content="Enter HexColor #AARRGGBB"
+                           Margin="0,0,0,0" 
+                           HorizontalAlignment="Left" 
+                           Padding="0,2,0,0" 
                            FontFamily="HP Simplified Light"
                            />
                 </WrapPanel>
-                <!-- Contains the Hex Information Control for Text -->
-                <Label x:Name="SetTCCHexLabel" 
-                       Content="Enter HexColor #AARRGGBB"
-                       Margin="0,0,0,0" 
+            </WrapPanel>
+            <!-- Contains the Control Color Changer Controls-->
+            <WrapPanel x:Name="ControlColorChangerPanel" 
                        HorizontalAlignment="Left" 
-                       Padding="0,2,0,0" 
-                       FontFamily="HP Simplified Light"
+                       Margin="10,0,0,0"  
+                       VerticalAlignment="Top" 
+                       RenderTransformOrigin="0.5,0.5"
+                       Orientation="Vertical" 
+                       >
+                <Label x:Name="SetCCCLabel" 
+                       Content="Control Color Changer" 
+                       VerticalAlignment="Top" 
+                       HorizontalAlignment="Left" 
+                       Padding="0,0,0,0" 
+                       FontFamily="HP Simplified" 
+                       FontSize="16"
                        />
-            </WrapPanel>
-        </WrapPanel>
-        <!-- Contains the Control Color Changer Controls-->
-        <WrapPanel x:Name="ControlColorChangerPanel" 
-                   HorizontalAlignment="Left" 
-                   Margin="374,36,0,0"  
-                   VerticalAlignment="Top" 
-                   RenderTransformOrigin="0.5,0.5"
-                   Orientation="Vertical" 
-                   Panel.ZIndex="2"
-                   >
-            <Label x:Name="SetCCCLabel" 
-                   Content="Control Color Changer" 
-                   VerticalAlignment="Top" 
-                   HorizontalAlignment="Left" 
-                   Padding="0,0,0,0" 
-                   FontFamily="HP Simplified" 
-                   FontSize="16"
-                   />
-            <!-- Contains the ARGB set of controls for Controls-->
-            <WrapPanel x:Name="ControlColorSubChangerPanel1"
-                       HorizontalAlignment="Left" 
-                       Margin="0,0,0,0"  
-                       VerticalAlignment="Top" 
-                       RenderTransformOrigin="0.5,0.5"
-                       Orientation="Horizontal"
-                       >
-                <!-- Contains the ARGB Entry Controls for Controls -->
-                <WrapPanel x:Name="ControlColorChangerARGBValPanel" 
-                           HorizontalAlignment="Left" 
-                           Orientation="Vertical" 
-                           VerticalAlignment="Top"
-                           >
-                    <TextBox x:Name="SetCCCARGBAVal" 
-                             HorizontalAlignment="Center" 
-                             TextWrapping="Wrap" 
-                             VerticalAlignment="Center" 
-                             Width="30" 
-                             TextChanged="SetCCCARGBAVal_TextChanged"
-                             Margin="0,2,0,5"
-                             MaxLength="3"
-                              />
-                    <TextBox x:Name="SetCCCARGBRVal" 
-                             HorizontalAlignment="Left" 
-                             TextWrapping="Wrap" 
-                             VerticalAlignment="Center" 
-                             Width="30" 
-                             TextChanged="SetCCCARGBRVal_TextChanged"
-                             Margin="0,0,0,5"
-                             MaxLength="3"
-                             />
-                    <TextBox x:Name="SetCCCARGBGVal" 
-                             HorizontalAlignment="Left" 
-                             TextWrapping="Wrap" 
-                             VerticalAlignment="Top" 
-                             Width="30"
-                             TextChanged="SetCCCARGBGVal_TextChanged"
-                             Margin="0,0,0,5"
-                             MaxLength="3"
-                             />
-                    <TextBox x:Name="SetCCCARGBBVal" 
-                             HorizontalAlignment="Left" 
-                             TextWrapping="Wrap" 
-                             VerticalAlignment="Top" 
-                             Width="30"
-                             TextChanged="SetCCCARGBBVal_TextChanged"
-                             Margin="0,0,0,0" 
-                             MaxLength="3"
-                             />
-                </WrapPanel>
-                <!-- Contains the ARGB Information Controls for Controls -->
-                <WrapPanel x:Name="ControlColorChangerARGBLabelPanel" 
-                           HorizontalAlignment="Left" 
-                           Orientation="Vertical" 
-                           VerticalAlignment="Top"
-                           >
-                    <Label x:Name="SetCCCARGBALabel" 
-                           Content="0-255 Alpha-Opacity" 
-                           HorizontalAlignment="Left" 
-                           Height="25" 
-                           FontSize="12" 
-                           ForceCursor="True" 
-                           VerticalAlignment="Center" 
-                           Margin="0,-1,0,0" 
-                           FontFamily="HP Simplified Light"
-                           />
-                    <Label x:Name="SetCCCARGBRLabel" 
-                           Content="0-255 Red" 
-                           HorizontalAlignment="Left" 
-                           Height="25" FontSize="12" 
-                           ForceCursor="True" 
-                           VerticalAlignment="Top" 
-                           Margin="0,-2,0,0" 
-                           FontFamily="HP Simplified Light"
-                           />
-                    <Label x:Name="SetCCCARGBGLabel" 
-                           Content="0-255 Green" 
-                           HorizontalAlignment="Left" 
-                           Height="25" 
-                           FontSize="12" 
-                           ForceCursor="True" 
-                           VerticalAlignment="Center" 
-                           Margin="0,-2,0,0" 
-                           FontFamily="HP Simplified Light"
-                           />
-                    <Label x:Name="SetCCCARGBBLabel" 
-                           Content="0-255 Blue" 
-                           HorizontalAlignment="Left" 
-                           Height="25" 
-                           FontSize="12" 
-                           ForceCursor="True" 
-                           VerticalAlignment="Top" 
-                           Margin="0,-2,0,0" 
-                           FontFamily="HP Simplified Light"
-                           />
-                </WrapPanel>
-            </WrapPanel>
-            <!-- Contains the Hex Color set of controls for Controls-->
-            <WrapPanel x:Name="ControlColorSubChangerPanel2"
-                       HorizontalAlignment="Left"  
-                       VerticalAlignment="Top" 
-                       RenderTransformOrigin="0.5,0.5"
-                       Orientation="Vertical"
-                       >
-                <!-- Contains the Hex Entry and Error Display Controls for Control -->
-                <WrapPanel x:Name="ControlColorChangerHexValPanel"
+                <!-- Contains the ARGB set of controls for Controls-->
+                <WrapPanel x:Name="ControlColorSubChangerPanel1"
                            HorizontalAlignment="Left" 
                            Margin="0,0,0,0"  
                            VerticalAlignment="Top" 
                            RenderTransformOrigin="0.5,0.5"
                            Orientation="Horizontal"
-                    >
-                    <TextBox x:Name="SetCCCHexVal" 
-                             TextWrapping="Wrap" 
-                             Width="76" 
-                             HorizontalAlignment="Left"
-                             MaxLength="9"
-                             TextChanged="SetCCCHexVal_TextChanged"
-                         />
-                    <Label x:Name="SetCCCHexValLabel" 
-                           Padding="5,1,0,0"
-                           HorizontalAlignment="Left"
-                           HorizontalContentAlignment="Right" 
-                           Width="58" 
+                           >
+                    <!-- Contains the ARGB Entry Controls for Controls -->
+                    <WrapPanel x:Name="ControlColorChangerARGBValPanel" 
+                               HorizontalAlignment="Left" 
+                               Orientation="Vertical" 
+                               VerticalAlignment="Top"
+                               >
+                        <TextBox x:Name="SetCCCARGBAVal" 
+                                 HorizontalAlignment="Center" 
+                                 TextWrapping="Wrap" 
+                                 VerticalAlignment="Center" 
+                                 Width="30" 
+                                 TextChanged="SetCCCARGBAVal_TextChanged"
+                                 Margin="0,2,0,5"
+                                 MaxLength="3"
+                                  />
+                        <TextBox x:Name="SetCCCARGBRVal" 
+                                 HorizontalAlignment="Left" 
+                                 TextWrapping="Wrap" 
+                                 VerticalAlignment="Center" 
+                                 Width="30" 
+                                 TextChanged="SetCCCARGBRVal_TextChanged"
+                                 Margin="0,0,0,5"
+                                 MaxLength="3"
+                                 />
+                        <TextBox x:Name="SetCCCARGBGVal" 
+                                 HorizontalAlignment="Left" 
+                                 TextWrapping="Wrap" 
+                                 VerticalAlignment="Top" 
+                                 Width="30"
+                                 TextChanged="SetCCCARGBGVal_TextChanged"
+                                 Margin="0,0,0,5"
+                                 MaxLength="3"
+                                 />
+                        <TextBox x:Name="SetCCCARGBBVal" 
+                                 HorizontalAlignment="Left" 
+                                 TextWrapping="Wrap" 
+                                 VerticalAlignment="Top" 
+                                 Width="30"
+                                 TextChanged="SetCCCARGBBVal_TextChanged"
+                                 Margin="0,0,0,0" 
+                                 MaxLength="3"
+                                 />
+                    </WrapPanel>
+                    <!-- Contains the ARGB Information Controls for Controls -->
+                    <WrapPanel x:Name="ControlColorChangerARGBLabelPanel" 
+                               HorizontalAlignment="Left" 
+                               Orientation="Vertical" 
+                               VerticalAlignment="Top"
+                               >
+                        <Label x:Name="SetCCCARGBALabel" 
+                               Content="0-255 Alpha-Opacity" 
+                               HorizontalAlignment="Left" 
+                               Height="25" 
+                               FontSize="12" 
+                               ForceCursor="True" 
+                               VerticalAlignment="Center" 
+                               Margin="0,-1,0,0" 
+                               FontFamily="HP Simplified Light"
+                               />
+                        <Label x:Name="SetCCCARGBRLabel" 
+                               Content="0-255 Red" 
+                               HorizontalAlignment="Left" 
+                               Height="25" FontSize="12" 
+                               ForceCursor="True" 
+                               VerticalAlignment="Top" 
+                               Margin="0,-2,0,0" 
+                               FontFamily="HP Simplified Light"
+                               />
+                        <Label x:Name="SetCCCARGBGLabel" 
+                               Content="0-255 Green" 
+                               HorizontalAlignment="Left" 
+                               Height="25" 
+                               FontSize="12" 
+                               ForceCursor="True" 
+                               VerticalAlignment="Center" 
+                               Margin="0,-2,0,0" 
+                               FontFamily="HP Simplified Light"
+                               />
+                        <Label x:Name="SetCCCARGBBLabel" 
+                               Content="0-255 Blue" 
+                               HorizontalAlignment="Left" 
+                               Height="25" 
+                               FontSize="12" 
+                               ForceCursor="True" 
+                               VerticalAlignment="Top" 
+                               Margin="0,-2,0,0" 
+                               FontFamily="HP Simplified Light"
+                               />
+                    </WrapPanel>
+                </WrapPanel>
+                <!-- Contains the Hex Color set of controls for Controls-->
+                <WrapPanel x:Name="ControlColorSubChangerPanel2"
+                           HorizontalAlignment="Left"  
+                           VerticalAlignment="Top" 
+                           RenderTransformOrigin="0.5,0.5"
+                           Orientation="Vertical"
+                           >
+                    <!-- Contains the Hex Entry and Error Display Controls for Control -->
+                    <WrapPanel x:Name="ControlColorChangerHexValPanel"
+                               HorizontalAlignment="Left" 
+                               Margin="0,0,0,0"  
+                               VerticalAlignment="Top" 
+                               RenderTransformOrigin="0.5,0.5"
+                               Orientation="Horizontal"
+                        >
+                        <TextBox x:Name="SetCCCHexVal" 
+                                 TextWrapping="Wrap" 
+                                 Width="76" 
+                                 HorizontalAlignment="Left"
+                                 MaxLength="9"
+                                 TextChanged="SetCCCHexVal_TextChanged"
+                             />
+                        <Label x:Name="SetCCCHexValLabel" 
+                               Padding="5,1,0,0"
+                               HorizontalAlignment="Left"
+                               HorizontalContentAlignment="Right" 
+                               Width="58" 
+                               FontFamily="HP Simplified Light"
+                               />
+                    </WrapPanel>
+                    <!-- Contains the Hex Information Control for Controls -->
+                    <Label x:Name="SetCCCHexLabel" 
+                           Content="Enter HexColor #AARRGGBB"
+                           Margin="0,0,0,0" 
+                           HorizontalAlignment="Left" 
+                           Padding="0,2,0,0" 
                            FontFamily="HP Simplified Light"
                            />
                 </WrapPanel>
-                <!-- Contains the Hex Information Control for Controls -->
-                <Label x:Name="SetCCCHexLabel" 
-                       Content="Enter HexColor #AARRGGBB"
-                       Margin="0,0,0,0" 
-                       HorizontalAlignment="Left" 
-                       Padding="0,2,0,0" 
-                       FontFamily="HP Simplified Light"
-                       />
             </WrapPanel>
+        </WrapPanel><!--End of Color Changer Panel-->
+        <!--Start of Web Browser Button Group Component-->
+        <WrapPanel x:Name="WebBrowserButtonGroupComponent"
+                   Margin="520,36,10, 980"
+                   Orientation="Vertical"
+                   >
+            <Button x:Name="WebBrowserButtonComponent"
+                    Width="20"
+                    Height="20"
+                    Click="WebBrowserButtonComponent_Click"
+                    />
+
         </WrapPanel>
+        <!--End of the Web Browser Group Component-->
+        <!--Start of Web Brower Component-->
+        <WrapPanel x:Name="WebBrowserComponent"
+                   Margin="36,36,36,36"
+                   IsEnabled = "True"
+                   Visibility="Visible"
+                   Panel.ZIndex="3"
+                   >
+            <WebBrowser x:Name="WBFirstComponent"
+                        Margin="0,0,0,0"
+                        Cursor="Arrow"
+                        Height="Auto" 
+                        />
 
-
+        </WrapPanel>
+        <!--End of Web Browser Component-->
     </Grid>
 </Window>
