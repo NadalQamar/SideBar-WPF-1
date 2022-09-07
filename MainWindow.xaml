@@ -532,20 +532,38 @@
                            />
                 </WrapPanel>
             </WrapPanel>
-        </WrapPanel><!--End of Color Changer Panel-->
+        </WrapPanel>
+        <!--End of Color Changer Panel-->
         <!--Start of Web Browser Button Group Component-->
         <WrapPanel x:Name="WebBrowserButtonGroupComponent"
-                   Margin="520,36,10, 980"
+                   Margin="520,20,10,120"
                    Orientation="Vertical"
+                   Panel.ZIndex="3"
                    >
-            <Button x:Name="WebBrowserButtonComponent"
-                    Width="20"
-                    Height="20"
-                    Click="WebBrowserButtonComponent_Click"
-                    />
+            <ToggleButton x:Name="WebBrowserButtonComponentAdd"
+                          Width="20"
+                          Height="20"
+                          Click="WebBrowserButtonComponentAdd_Click" 
+                          Content="+"
+                          >
+                <ToggleButton.ContextMenu>
+                    <ContextMenu>
+                        <Label x:Name="WebBrowserButtonComponentAddMenuLabel"
+                               Content="Enter website address and press enter:"
+                               Margin="0,0,0,0"
+                               Padding="0,0,0,0"  
+                               IsHitTestVisible="False"
+                               />
+                        <TextBox x:Name="WebBrowserButtonComponentAddMenuTextBox"
+                                 Width="250"
+                                 KeyDown="WebBrowserButtonComponentAddMenuTextBox_KeyDown"
+                                 />
+                    </ContextMenu>
+                </ToggleButton.ContextMenu>
 
+            </ToggleButton>
         </WrapPanel>
-        <!--End of the Web Browser Group Component-->
+        <!--End of the Web Browser Button Group Component-->
         <!--Start of Web Brower Component-->
         <WrapPanel x:Name="WebBrowserComponent"
                    Margin="36,36,36,36"
@@ -553,12 +571,6 @@
                    Visibility="Visible"
                    Panel.ZIndex="3"
                    >
-            <WebBrowser x:Name="WBFirstComponent"
-                        Margin="0,0,0,0"
-                        Cursor="Arrow"
-                        Height="Auto" 
-                        />
-
         </WrapPanel>
         <!--End of Web Browser Component-->
     </Grid>

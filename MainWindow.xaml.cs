@@ -21,9 +21,15 @@ namespace SideBar
     public partial class MainWindow : Window
     {
         //field values
-        bool wbButtonFlag = false;
+        bool wbButtonFlag = false;//For when the user clicks the Button for WebBrowser
+        bool wbButtonAddFlag = false;
         bool accessFlag = false;//For Mouse Entry to and from SideBar
         bool settingsFlag = false;//For When user clicks on setting button
+
+        int webSiteIndex = 1;
+        List <string> webSiteURL = new List<string>();//For Storing URL and info
+        WebBrowser wbBrowser;
+
         byte bgColorA;//Color of the Background
         byte bgColorR;
         byte bgColorG;
@@ -50,7 +56,7 @@ namespace SideBar
             ControlBox.Height = SystemParameters.PrimaryScreenHeight;
             PrimarySideBarPanel.Margin = new Thickness(10, SystemParameters.PrimaryScreenHeight - 100, 10, 20);
 
-            WebBrowserButtonGroupComponent.Margin = new Thickness(10, 36, 10, 0);
+            WebBrowserButtonGroupComponent.Margin = new Thickness(10, 20, 10, 0);
 
             //Background Color Get
             string colorbg = new BrushConverter().ConvertToString(Background);
@@ -85,6 +91,29 @@ namespace SideBar
         }
         
         //Methods
+        private void WebBrowser(string URL)//Adds the wbBrowser to WebBrowserComponent and Navigates to that page
+        {
+            wbBrowser = new WebBrowser();
+            WebBrowserComponent.Children.Add(wbBrowser);
+            wbBrowser.Margin = new Thickness(0, 0, 0, 0);
+            wbBrowser.Cursor = Cursors.Arrow;
+            wbBrowser.Height = WebBrowserComponent.Height;
+            wbBrowser.Width = WebBrowserComponent.Width;
+
+            wbBrowser.Navigate(URL);
+        }
+        private void WebBrowserButtonAdd(int index)
+        {
+            Button button = new Button();
+            button.Width = 20;
+            button.Height = 20;
+            button.Content = index;
+            button.Click += WebBrowserButtonComponent_Click;
+            WebBrowserButtonGroupComponent.Children.Add(button);
+
+            webSiteIndex++;
+        }
+
         private void ExpandBar()
         {
             Left = SystemParameters.PrimaryScreenWidth - 550;
@@ -92,7 +121,7 @@ namespace SideBar
             ControlBox.Margin = new Thickness(-550, 0, 0, 0);
             PrimarySideBarPanel.Margin = new Thickness(520, SystemParameters.PrimaryScreenHeight - 100, 10, 20);
 
-            WebBrowserButtonGroupComponent.Margin = new Thickness(520, 36, 10, 0);
+            WebBrowserButtonGroupComponent.Margin = new Thickness(520, 20, 10, 0);
         }
 
         private void CollapseBar()
@@ -102,7 +131,7 @@ namespace SideBar
             ControlBox.Margin = new Thickness(-35, 0, 0, 0);
             PrimarySideBarPanel.Margin = new Thickness(10, SystemParameters.PrimaryScreenHeight - 100, 10, 20);
 
-            WebBrowserButtonGroupComponent.Margin = new Thickness(10, 36, 10, 0);
+            WebBrowserButtonGroupComponent.Margin = new Thickness(10, 20, 10, 0);
         }
         private Brush ForegroundGet()
         {
@@ -307,16 +336,73 @@ namespace SideBar
         }
 
         //WebBrowser Controls
+        private void WebBrowserButtonComponentAdd_Click(object sender, RoutedEventArgs e)
+        {   
+            if(wbButtonAddFlag == false)
+            {
+                WebBrowserButtonComponentAdd.ContextMenu.IsOpen = true ;
+
+                wbButtonAddFlag = true;
+            }
+            else
+            {
+                WebBrowserButtonComponentAdd.ContextMenu.IsOpen = false;
+
+                wbButtonAddFlag = false;
+            }
+        }
+
+        private void WebBrowserButtonComponentAddMenuTextBox_KeyDown(object sender, KeyEventArgs e)
+        {//Improvement here
+            if(e.Key == Key.Enter)
+            {
+                if(WebBrowserButtonComponentAddMenuTextBox.Text != "")
+                {
+                    webSiteURL.Add(WebBrowserButtonComponentAddMenuTextBox.Text);
+                    WebBrowserButtonAdd(webSiteIndex);
+                    WebBrowserButtonComponentAddMenuTextBox.Clear();
+                }
+                else
+                {
+                    WebBrowserButtonComponentAddMenuLabel.Content = "Enter website address and press enter:   null";
+                }
+                
+            }
+           
+        }
+
         private void WebBrowserButtonComponent_Click(object sender, RoutedEventArgs e)
         {
-            if(wbButtonFlag == false)
+            int index = WebBrowserButtonGroupComponent.Children.IndexOf((Button)sender);//Gets the index of the button pressed
+
+            if (wbButtonFlag == false && settingsFlag == true)
+            {
+                CollapseBar();
+
+                ColorChangerPanel.Visibility = Visibility.Hidden;
+                ColorChangerPanel.IsEnabled = false;
+
+                settingsFlag = false;
+
+                ExpandBar();
+
+                WebBrowserComponent.Visibility = Visibility.Visible;
+                WebBrowserComponent.IsEnabled = true;
+                          
+                WebBrowser(webSiteURL[index-1]);
+
+                wbButtonFlag = true;
+
+
+            }
+            else if(wbButtonFlag == false)
             {
                 ExpandBar();
 
                 WebBrowserComponent.IsEnabled = true;
                 WebBrowserComponent.Visibility = Visibility.Visible;
 
-                WBFirstComponent.Navigate(new Uri("https://www.google.com"));
+                WebBrowser(webSiteURL[index-1]);
 
                 wbButtonFlag = true;
             }
@@ -326,6 +412,8 @@ namespace SideBar
 
                 WebBrowserComponent.IsEnabled = false;
                 WebBrowserComponent.Visibility = Visibility.Hidden;
+
+                WebBrowserComponent.Children.Remove(wbBrowser);
 
                 wbButtonFlag = false;
             }
@@ -400,7 +488,46 @@ namespace SideBar
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)//Opens the Settings Panel
         {
-            if(settingsFlag == false)
+            if(settingsFlag == false && wbButtonFlag == true)
+            {
+                CollapseBar();
+
+                WebBrowserComponent.Visibility = Visibility.Hidden;
+                WebBrowserComponent.IsEnabled = false;
+
+                WebBrowserComponent.Children.Remove(wbBrowser);
+
+                wbButtonFlag = false;
+
+                ExpandBar();
+
+                ColorChangerPanel.Visibility = Visibility.Visible;
+                ColorChangerPanel.IsEnabled = true;
+
+                settingsFlag = true;
+
+                //Background Color Display
+                SetBCCHexVal.Text = bgColorHex;
+                SetBCCARGBAVal.Text = bgColorA.ToString();
+                SetBCCARGBRVal.Text = bgColorR.ToString();
+                SetBCCARGBGVal.Text = bgColorG.ToString();
+                SetBCCARGBBVal.Text = bgColorB.ToString();
+
+                //Text Color Display
+                SetTCCHexVal.Text = tColorHex;
+                SetTCCARGBAVal.Text = tColorA.ToString();
+                SetTCCARGBRVal.Text = tColorR.ToString();
+                SetTCCARGBGVal.Text = tColorG.ToString();
+                SetTCCARGBBVal.Text = tColorB.ToString();
+
+                //Control Color Display
+                SetCCCHexVal.Text = cColorHex;
+                SetCCCARGBAVal.Text = cColorA.ToString();
+                SetCCCARGBRVal.Text = cColorR.ToString();
+                SetCCCARGBGVal.Text = cColorG.ToString();
+                SetCCCARGBBVal.Text = cColorB.ToString();
+            }
+            else if(settingsFlag == false)
             {
                 ExpandBar();
 
@@ -1010,6 +1137,5 @@ namespace SideBar
 
             }
         }
-        
     }
 }
