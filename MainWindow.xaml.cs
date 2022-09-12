@@ -22,13 +22,15 @@ namespace SideBar
     {
         //field values
         bool wbButtonFlag = false;//For when the user clicks the Button for WebBrowser
-        bool wbButtonAddFlag = false;
         bool accessFlag = false;//For Mouse Entry to and from SideBar
         bool settingsFlag = false;//For When user clicks on setting button
 
         int webSiteIndex = 1;
+        int webSiteDisplayIndex = 1;
         List <string> webSiteURL = new List<string>();//For Storing URL and info
+        List <Button> webSiteButton = new List<Button>();
         WebBrowser wbBrowser;
+        ContextMenu contextMenuRemoval;
 
         byte bgColorA;//Color of the Background
         byte bgColorR;
@@ -91,7 +93,7 @@ namespace SideBar
         }
         
         //Methods
-        private void WebBrowser(string URL)//Adds the wbBrowser to WebBrowserComponent and Navigates to that page
+        private void WebBrowser(string URL)//KeyFeature Adds the wbBrowser to WebBrowserComponent and Navigates to that page
         {
             wbBrowser = new WebBrowser();
             WebBrowserComponent.Children.Add(wbBrowser);
@@ -107,11 +109,14 @@ namespace SideBar
             Button button = new Button();
             button.Width = 20;
             button.Height = 20;
-            button.Content = index;
+            button.Content = webSiteDisplayIndex;
             button.Click += WebBrowserButtonComponent_Click;
+            button.MouseRightButtonDown += WebBrowserButtonComponentRemove_Click;
+            webSiteButton.Add(button);
             WebBrowserButtonGroupComponent.Children.Add(button);
 
             webSiteIndex++;
+            webSiteDisplayIndex++;
         }
 
         private void ExpandBar()
@@ -337,38 +342,15 @@ namespace SideBar
 
         //WebBrowser Controls
         private void WebBrowserButtonComponentAdd_Click(object sender, RoutedEventArgs e)
-        {   
-            if(wbButtonAddFlag == false)
-            {
-                WebBrowserButtonComponentAdd.ContextMenu.IsOpen = true ;
-
-                wbButtonAddFlag = true;
-            }
-            else
-            {
-                WebBrowserButtonComponentAdd.ContextMenu.IsOpen = false;
-
-                wbButtonAddFlag = false;
-            }
+        {        
+            WebBrowserButtonComponentAdd.ContextMenu.IsOpen = true ;
         }
 
-        private void WebBrowserButtonComponentAddMenuTextBox_KeyDown(object sender, KeyEventArgs e)
-        {//Improvement here
-            if(e.Key == Key.Enter)
-            {
-                if(WebBrowserButtonComponentAddMenuTextBox.Text != "")
-                {
-                    webSiteURL.Add(WebBrowserButtonComponentAddMenuTextBox.Text);
-                    WebBrowserButtonAdd(webSiteIndex);
-                    WebBrowserButtonComponentAddMenuTextBox.Clear();
-                }
-                else
-                {
-                    WebBrowserButtonComponentAddMenuLabel.Content = "Enter website address and press enter:   null";
-                }
-                
-            }
-           
+        private void WebBrowserButtonComponentRemove_Click(object sender, RoutedEventArgs e)
+        {
+            contextMenuRemoval = FindResource("buttonMenu") as ContextMenu;
+            contextMenuRemoval.PlacementTarget = sender as Button;
+            contextMenuRemoval.IsOpen = true;
         }
 
         private void WebBrowserButtonComponent_Click(object sender, RoutedEventArgs e)
@@ -418,6 +400,33 @@ namespace SideBar
                 wbButtonFlag = false;
             }
 
+        }
+
+        private void WebBrowserButtonComponentAddMenuTextBox_KeyDown(object sender, KeyEventArgs e)
+        {//Improvement here
+            if (e.Key == Key.Enter)
+            {
+                if (WebBrowserButtonComponentAddMenuTextBox.Text != "")
+                {
+                    webSiteURL.Add(WebBrowserButtonComponentAddMenuTextBox.Text);
+                    WebBrowserButtonAdd(webSiteIndex);
+                    WebBrowserButtonComponentAddMenuTextBox.Clear();
+                }
+                else
+                {
+                    WebBrowserButtonComponentAddMenuLabel.Content = "Enter website address and press enter:   null";
+                }
+            }
+
+        }
+
+        private void WebBrowserButtonComponentRemoveMenu_Click(object sender, RoutedEventArgs e)
+        {
+            int index = WebBrowserButtonGroupComponent.Children.IndexOf(contextMenuRemoval.PlacementTarget);//Gets the index of the button whose menu was opened
+
+            webSiteURL.RemoveAt(index - 1);
+            WebBrowserButtonGroupComponent.Children.RemoveAt(index);
+            webSiteIndex--;
         }
 
         //SideBar Controls

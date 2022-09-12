@@ -1,9 +1,10 @@
-﻿<Window x:Name="SideBar" x:Class="SideBar.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SideBar"
+        x:Name="SideBar" x:Class="SideBar.MainWindow"
         mc:Ignorable="d"
         Title="SideBar" 
         Height= "1080"
@@ -20,14 +21,22 @@
         VerticalContentAlignment="Stretch" 
         ResizeMode="NoResize" 
         >
+    <Window.Resources>
+        <ContextMenu x:Key="buttonMenu">
+            <MenuItem Header="Remove"
+                      Click="WebBrowserButtonComponentRemoveMenu_Click"
+                      />
+        </ContextMenu>
+    </Window.Resources>
     <Grid Margin="0,0,0,0">
+        
         <!--ControlBox depends on the entry or exit of the mouse pointer from the window -->
         <Label x:Name="ControlBox"
                Height="1080"
                Width="5"
                Margin="-35,0,0,0"
                Panel.ZIndex="0"
-               UIElement.MouseEnter="ControlBox_MouseEnter"
+               MouseEnter="ControlBox_MouseEnter"
                />
         <!--Contains the main buttons, start of Primary SideBar Panel-->
         <WrapPanel x:Name="PrimarySideBarPanel" 
@@ -570,8 +579,7 @@
                    IsEnabled = "True"
                    Visibility="Visible"
                    Panel.ZIndex="3"
-                   >
-        </WrapPanel>
+                   />
         <!--End of Web Browser Component-->
     </Grid>
 </Window>
